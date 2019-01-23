@@ -9,6 +9,6 @@ BillySTAT records your Snooker statistics using YOLOv2, OpenCV and NVidia Cuda.
 ### Project members
 
 - [Kristian Syrjänen](https://kristiansyrjanen.com/) 
-- [Axel Rusanen](axellinux.wordpress.com) **Project Manager**
+- [Axel Rusanen](https://axellinux.wordpress.com) **Project Manager**
 - [Miikka Valtonen](https://miikkavaltonen.com)
 - [Matias Richterich](https://richterich.me)
