@@ -120,7 +120,7 @@ This is taken from the OpenCV3 installation page.
     echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.bashrc
     source ~/.bashrc
     
-//Python3
+[//]: <> (Python3)
 
     mkvirtualenv facecourse-py3 -p python3
     workon facecourse-py3
