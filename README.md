@@ -13,10 +13,8 @@ BillySTAT records your Snooker statistics using YOLOv2, OpenCV and NVidia Cuda.
 - [Miikka Valtonen](https://miikkavaltonen.com) **Project Manager**
 - [Matias Richterich](https://richterich.me)
 
-## Setting up environment for YOLOv3
-***(Laptop users attention: Getting your discrete gpu to work will be a driver-nightmare)***
-
-***Done on Xubuntu 18.04 LTS***
+***Done on Xubuntu 18.04 LTS
+Hardware HP z820, Xeon e52630 v2 x2, 2 x 8gb 1333 mHz per per processor, 1 TB SSHD***
 
 ### Things to do
 + Setup server
@@ -27,3 +25,157 @@ BillySTAT records your Snooker statistics using YOLOv2, OpenCV and NVidia Cuda.
 + Create boundaries that when crossed, counts as a point/points depending what colored ball it is.
 + Make it count statistics
 + Create GUI for statistics
+
+## Setting up environment for YOLOv3
+***(Laptop users attention: Getting your discrete gpu to work will be a driver-nightmare)***
+
+### Installations
+#### Nvidia drivers
+First off we'll download NVidia drivers, let's start by adding nvidia ppa:latest,
+
+    sudo add-apt-repository ppa:graphics-drivers
+    sudo apt-get update
+
+Install NVidia drivers,
+
+    sudo apt-get install nvidia-driver-410
+
+And reboot
+
+    sudo reboot
+    
+#### CUDA installation
+
+Head on to the [download page](https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1804&target_type=debnetwork), download the needed file and proceed with instructions.
+
+    sudo dpkg -i cuda-repo-ubuntu1804_10.0.130-1_amd64.deb
+    sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub
+    sudo apt-get update
+    sudo apt-get install cuda
+
+We had trouble with apt-get so we used **aptitude**.
+
+    sudo apt-get install aptitude
+    sudo aptitude install cuda
+
+Reboot and try out nvidia-smi
+
+    nvidia-smi
+
+#### OpenCV3
+This is taken from the OpenCV3 installation page.
+
+**Install OS libraries
+
+    sudo apt-get update
+    sudo apt-get upgrade
+
+    sudo apt-get remove x264 libx264-dev
+
+    sudo apt-get install build-essential checkinstall cmake pkg-config yasm
+    sudo apt-get install git gfortran
+    sudo apt-get install libjpeg8-dev libjasper-dev libpng12-dev
+    
+    sudo apt-get install libtiff5-dev
+    
+    sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libdc1394-22-dev
+    sudo apt-get install libxine2-dev libv4l-dev
+    sudo apt-get install libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev
+    sudo apt-get install qt5-default libgtk2.0-dev libtbb-dev
+    sudo apt-get install libatlas-base-dev
+    sudo apt-get install libfaac-dev libmp3lame-dev libtheora-dev
+    sudo apt-get install libvorbis-dev libxvidcore-dev
+    sudo apt-get install libopencore-amrnb-dev libopencore-amrwb-dev
+    sudo apt-get install x264 v4l-utils
+    
+    sudo apt-get install libprotobuf-dev protobuf-compiler
+    sudo apt-get install libgoogle-glog-dev libgflags-dev
+    sudo apt-get install libgphoto2-dev libeigen3-dev libhdf5-dev doxygen
+    
+    sudo apt-get install python-dev python-pip python3-dev python3-pip
+    sudo -H pip2 install -U pip numpy
+    sudo -H pip3 install -U pip numpy
+    
+**Install Python libraries
+
+    sudo pip2 install virtualenv virtualenvwrapper
+    sudo pip3 install virtualenv virtualenvwrapper
+    echo "# Virtual Environment Wrapper"  >> ~/.bashrc
+    echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.bashrc
+    source ~/.bashrc
+    
+//Python3
+
+    mkvirtualenv facecourse-py3 -p python3
+    workon facecourse-py3
+    
+    pip install numpy scipy matplotlib scikit-image scikit-learn ipython
+    // Exit virtual environment with deactivate
+    deactivate
+    
+Download opencv from Github
+
+    git clone https://github.com/opencv/opencv.git
+    cd opencv 
+    git checkout 3.3.1 
+    cd ..
+    
+Download opencv_contrib from Github
+
+    git clone https://github.com/opencv/opencv_contrib.git
+    cd opencv_contrib
+    git checkout 3.3.1
+    cd ..
+    
+Compile and install OpenCV with contrib modules
+Create a build directory
+
+    cd opencv
+    mkdir build
+    cd build
+    
+Run CMake
+    
+    cmake -D CMAKE_BUILD_TYPE=RELEASE \
+      -D CMAKE_INSTALL_PREFIX=/usr/local \
+      -D INSTALL_C_EXAMPLES=ON \
+      -D INSTALL_PYTHON_EXAMPLES=ON \
+      -D WITH_TBB=ON \
+      -D WITH_V4L=ON \
+      -D WITH_QT=ON \
+      -D WITH_OPENGL=ON \
+      -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
+      -D BUILD_EXAMPLES=ON ..
+      
+Compile and Install
+
+    # find out number of CPU cores in your machine
+    nproc
+    # substitute 4 by output of nproc
+    make -j4
+    sudo make install
+    sudo sh -c 'echo "/usr/local/lib" >> /etc/ld.so.conf.d/opencv.conf'
+    sudo ldconfig
+    
+Create symlink in virtual environment
+
+    find /usr/local/lib/ -type f -name "cv2*.so"
+    
+    cd ~/.virtualenvs/facecourse-py3/lib/python3.6/site-packages
+    ln -s /usr/local/lib/python3.6/dist-packages/cv2.cpython-36m-x86_64-linux-gnu.so cv2.so
+    
+Test it with C++
+
+    # compile
+    # There are backticks ( ` ) around pkg-config command not single quotes
+    g++ -std=c++11 removeRedEyes.cpp `pkg-config --libs --cflags opencv` -o removeRedEyes
+    # run
+    ./removeRedEyes
+    
+    workon facecourse-py3
+    
+Test with Python3
+
+    python removeRedEyes.py
+    // Exit virtual environment with deactivate
+    deactivate
