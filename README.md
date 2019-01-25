@@ -1,3 +1,19 @@
+
+
+<!-- toc -->
+
+- [BillySTAT](#billystat)
+  * [School project @Haaga-Helia University of Applied Sciences](#school-project-haaga-helia-university-of-applied-sciences)
+    + [Project members](#project-members)
+    + [Things to do](#things-to-do)
+  * [Setting up environment for YOLOv3](#setting-up-environment-for-yolov3)
+    + [Installations](#installations)
+      - [Nvidia drivers](#nvidia-drivers)
+      - [CUDA installation](#cuda-installation)
+      - [OpenCV3](#opencv3)
+
+<!-- tocstop -->
+
 # BillySTAT
 BillySTAT records your Snooker statistics using YOLOv2, OpenCV and NVidia Cuda.
 
