@@ -45,6 +45,23 @@ Hardware HP z820, Xeon e52630 v2 x2, 2 x 8gb 1333 mHz per per processor, 1 TB SS
 ## Setting up environment for YOLOv3
 ***(Laptop users attention: Getting your discrete gpu to work will be a driver-nightmare)***
 
+### Setting up server
+#### Creating access point for remote work
+
+Config changes on 01-network-manager-all.yaml
+
+    network:
+    ethernets:
+       enp1s0:
+         addresses: [192.168.1.2/24]
+         gateway4: 192.168.1.1
+         nameservers:
+           addresses: [1.1.1.1,8.8.8.8]
+         dhcp4: no
+     version: 2
+
+And on our router we enabled port-forwarding to a desired port.
+
 ### Installations
 #### Nvidia drivers
 First off we'll download NVidia drivers, let's start by adding nvidia ppa:latest,
@@ -154,21 +171,29 @@ Run CMake
     
     cmake -D CMAKE_BUILD_TYPE=RELEASE \
       -D CMAKE_INSTALL_PREFIX=/usr/local \
-      -D INSTALL_C_EXAMPLES=ON \
-      -D INSTALL_PYTHON_EXAMPLES=ON \
+      -D INSTALL_C_EXAMPLES=OFF \
+      -D INSTALL_PYTHON_EXAMPLES=OFF \
       -D WITH_TBB=ON \
       -D WITH_V4L=ON \
       -D WITH_QT=ON \
       -D WITH_OPENGL=ON \
+      -D WITH_GSTREAMER=ON \
+      -D WITH_CUDA=ON \
+      -D WITH_NVCUVID=ON \
+      -D ENABLE_FAST_MATH=1 \
+      -D CUDA_FAST_MATH=1 \
+      -D WITH_CUBLAS=ON \
+      -D CUDA_NVCC_FLAGS="-D_FORCE_INLINES" \
+      -D BUILD_opencv_cudacodec=OFF \
       -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
-      -D BUILD_EXAMPLES=ON ..
+      -D BUILD_EXAMPLES=OFF ..
       
 Compile and Install
 
     # find out number of CPU cores in your machine
     nproc
     # substitute 4 by output of nproc
-    make -j4
+    make -j 24
     sudo make install
     sudo sh -c 'echo "/usr/local/lib" >> /etc/ld.so.conf.d/opencv.conf'
     sudo ldconfig
