@@ -98,7 +98,7 @@ Reboot and try out nvidia-smi
 #### OpenCV3
 This is taken from the OpenCV3 installation page.
 
-**Install OS libraries
+**Install OS libraries**
 
     sudo apt-get update
     sudo apt-get upgrade
@@ -129,7 +129,7 @@ This is taken from the OpenCV3 installation page.
     sudo -H pip2 install -U pip numpy
     sudo -H pip3 install -U pip numpy
     
-**Install Python libraries
+**Install Python libraries**
 
     sudo pip2 install virtualenv virtualenvwrapper
     sudo pip3 install virtualenv virtualenvwrapper
@@ -146,28 +146,28 @@ This is taken from the OpenCV3 installation page.
     // Exit virtual environment with deactivate
     deactivate
     
-Download opencv from Github
+**Download opencv from Github**
 
     git clone https://github.com/opencv/opencv.git
     cd opencv 
     git checkout 3.3.1 
     cd ..
     
-Download opencv_contrib from Github
+**Download opencv_contrib from Github**
 
     git clone https://github.com/opencv/opencv_contrib.git
     cd opencv_contrib
     git checkout 3.3.1
     cd ..
     
-Compile and install OpenCV with contrib modules
-Create a build directory
+**Compile and install OpenCV with contrib modules**
+**Create a build directory**
 
     cd opencv
     mkdir build
     cd build
     
-Run CMake
+**Run CMake**
     
     cmake -D CMAKE_BUILD_TYPE=RELEASE \
       -D CMAKE_INSTALL_PREFIX=/usr/local \
@@ -188,7 +188,7 @@ Run CMake
       -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
       -D BUILD_EXAMPLES=OFF ..
       
-Compile and Install
+**Compile and Install**
 
     # find out number of CPU cores in your machine
     nproc
@@ -198,14 +198,14 @@ Compile and Install
     sudo sh -c 'echo "/usr/local/lib" >> /etc/ld.so.conf.d/opencv.conf'
     sudo ldconfig
     
-Create symlink in virtual environment
+**Create symlink in virtual environment**
 
     find /usr/local/lib/ -type f -name "cv2*.so"
     
     cd ~/.virtualenvs/facecourse-py3/lib/python3.6/site-packages
     ln -s /usr/local/lib/python3.6/dist-packages/cv2.cpython-36m-x86_64-linux-gnu.so cv2.so
     
-Test it with C++
+**Test it with C++**
 
     # compile
     # There are backticks ( ` ) around pkg-config command not single quotes
@@ -215,7 +215,7 @@ Test it with C++
     
     workon facecourse-py3
     
-Test with Python3
+**Test with Python3**
 
     python removeRedEyes.py
     // Exit virtual environment with deactivate
