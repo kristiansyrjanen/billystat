@@ -279,3 +279,6 @@ Now we should be able to run main.py
 The Labeling-Tool looks like this:
 
 ![Alt Text](https://i.imgur.com/19maPfz.gif) 
+
+#### Add weights to YOLOv3
+
