@@ -220,3 +220,65 @@ This is taken from the OpenCV3 installation page.
     python removeRedEyes.py
     // Exit virtual environment with deactivate
     deactivate
+
+#### Installing Darknet
+
+	git clone https://github.com/pjreddie/darknet.git
+	cd darknet
+	make
+	# No errors? Continue with running ./darknet
+
+	./darknet
+	# Output should look like:
+	# usage: ./darknet <function>
+
+Edit the Makefile in the base directory to get Darknet to use your CUDA/GPU:
+
+	GPU=1
+
+Also change the 2nd line of the Makefile:
+
+	OPENCV=1
+	# Try it with:
+	# ./darknet imtest data/eagle.jpg
+
+### Training your neural networks
+
+#### Creating training material
+
+We went to a Pool & Snooker Bar called Corona and got some footage for our project.
+
+Next we used [YOLO-Annotation-Tool](https://github.com/ManivanananMurugavel/YOLO-Annotation-Tool) to create training sets for YOLO.
+
+	git clone https://github.com/ManivannanMurugavel/YOLO-Annotation-Tool.git
+	
+	cd YOLO-Annotation-Tool
+
+Move our images to the 001 directory under ./YOLO-Annotation-Tool/Images .
+
+	mv ./SnookerData/*.jpeg ./YOLO-Annotation-Tool/Images/001/
+
+We need to remove the cat photos that are in the 001 directory which are all .jpg files.
+
+	cd ./YOLO-Annotation-Tool/Images/001
+	rm *.jpg
+
+Next convert our .JPEG files to .JPG files
+
+	mogrify -format jpg *.jpeg
+
+To be able to run main.py we needed a few packages from apt.
+
+	sudo apt-get install python-tk python-pil python-imaging-tk
+	sudo pip install Image
+
+Now we should be able to run main.py
+
+	python main.py
+
+The Labeling-Tool looks like this:
+
+![Alt Text](https://i.imgur.com/19maPfz.gif) 
+
+#### Add weights to YOLOv3
+
