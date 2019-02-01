@@ -314,7 +314,7 @@ To compile it we ran 3 commands:
 	make
 	bash linux_mark.sh
 
-![Alt Text](https://i.imgur.com/dzNoV0T.mp4)
+![Alt Text](https://i.imgur.com/O1JsSZs.gif)
 
 #### Add weights to YOLOv3
 
