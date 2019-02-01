@@ -246,6 +246,8 @@ Also change the 2nd line of the Makefile:
 
 #### Creating training material
 
+##### 1st Alternative: YOLO-Annotation-Tool
+
 We went to a Pool & Snooker Bar called Corona and got some footage for our project.
 
 Next we used [YOLO-Annotation-Tool](https://github.com/ManivanananMurugavel/YOLO-Annotation-Tool) to create training sets for YOLO.
@@ -279,6 +281,40 @@ Now we should be able to run main.py
 The Labeling-Tool looks like this:
 
 ![Alt Text](https://i.imgur.com/19maPfz.gif) 
+
+Although the labeling works well, we wouldn't get the program to run convert.py or process.py succesfully.
+It would either create empty files or say that we didn't have some obscure directories (e.g. a directory with the name of our image).
+
+
+##### 2nd Alternative: Open Labeling
+
+We also tried another labeling-tool called [Open Labeling](https://github.com/Cartucho/OpenLabeling).
+
+	git clone https://github.com/Cartucho/OpenLabeling.git
+
+You can install everything at once by simply running:
+
+	python -mpip install -U pip
+	python -mpip install -U -r requirements.txt
+
+Ran the program, shut it down and tried reopening it again and was greeted by Error messages. That was the first and last time we got it to work.
+
+##### 3rd Alternative: Yolo_mark by AlexeyAB
+
+Luckily we found an Annotation Tool called [Yolo_mark](https://github.com/AlexeyAB/Yolo_mark)  by the creator of Darknet, AlexeyAB.
+
+First off:
+
+	git clone https://github.com/AlexeyAB/Yolo_mark.git
+	cd Yolo_mark
+
+To compile it we ran 3 commands:
+
+	cmake .
+	make
+	bash linux_mark.sh
+
+![Alt Text](https://i.imgur.com/dzNoV0T.mp4)
 
 #### Add weights to YOLOv3
 
