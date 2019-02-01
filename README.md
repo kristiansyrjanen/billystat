@@ -312,9 +312,18 @@ To compile it we ran 3 commands:
 
 	cmake .
 	make
-	bash linux_mark.sh
+	bash linux_mark.sh # Ctrl + C Ends
+
+Set the number of classes (objects) in /x64/Release/yolo-obj.cfg on line 230.
+Set filter value in /x64/Release/yolo-obj.cfg on line 224.
+
+* for YoloV2 (classes + 5)*3
+
+Now run Yolo_mark again and start making your BBoxes.
 
 ![Alt Text](https://i.imgur.com/O1JsSZs.gif)
+
+
 
 #### Add weights to YOLOv3
 
