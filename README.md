@@ -317,7 +317,7 @@ To compile it we ran 3 commands:
 Set the number of classes (objects) in /x64/Release/yolo-obj.cfg on line 230.
 Set filter value in /x64/Release/yolo-obj.cfg on line 224.
 
-* for YoloV2 (classes + 5)*3
+* for YoloV3 (classes + 5)*3
 
 Now run Yolo_mark again and start making your BBoxes.
 
