@@ -15,7 +15,7 @@
 <!-- tocstop -->
 
 # BillySTAT
-BillySTAT records your Snooker statistics using YOLOv2, OpenCV and NVidia Cuda.
+BillySTAT records your Snooker statistics using YOLOv3, OpenCV and NVidia Cuda.
 
 * [Darknet](https://pjreddie.com/darknet/install/)
 * [YOLOv3](https://pjreddie.com/darknet/yolo/)
