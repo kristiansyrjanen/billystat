@@ -25,12 +25,15 @@ BillySTAT records your Snooker statistics using YOLOv3, OpenCV and NVidia Cuda.
 ### Project members
 
 - [Kristian Syrjänen](https://kristiansyrjanen.com/) 
-- [Axel Rusanen](https://axellinux.wordpress.com)
+- [Axel Rusanen](https://axelrusanen.com)
 - [Miikka Valtonen](https://miikkavaltonen.com) **Project Manager**
 - [Matias Richterich](https://richterich.me)
 
-***Done on Xubuntu 18.04 LTS
-Hardware HP z820, Xeon e52630 v2 x2, 2 x 8gb 1333 mHz per per processor, 1 TB SSHD***
+***Done on Xubuntu 18.04 LTS***
+
+***Hardware HP z820, Xeon e52630 v2 x2, 2 x 8gb 1333 mHz per per processor, 1 TB SSHD***
+
+***[Images of our setup](https://imgur.com/a/qfKz9Dd)***
 
 ### Things to do
 + Setup server
@@ -41,6 +44,10 @@ Hardware HP z820, Xeon e52630 v2 x2, 2 x 8gb 1333 mHz per per processor, 1 TB SS
 + Create boundaries that when crossed, counts as a point/points depending what colored ball it is.
 + Make it count statistics
 + Create GUI for statistics
+
+## Information page
+
+[Thoughts, Ideas and Problems](https://github.com/kristiansyrjanen/billystat/blob/master/INFO.md)
 
 ## Setting up environment for YOLOv3
 ***(Laptop users attention: Getting your discrete gpu to work will be a driver-nightmare)***
