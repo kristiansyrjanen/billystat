@@ -253,6 +253,18 @@ Also change the 2nd line of the Makefile:
 
 #### Creating training material
 
+#### Resizing images
+
+To resize the images to a smaller size we used the following command:
+
+	FOLDER="/path/to/images"
+
+	WIDTH=800
+
+	HEIGHT=600
+
+	find ${FOLDER} -iname '*.jpg' -exec convert \{} -verbose -resize $WIDTHx$HEIGHT\> \{} \;
+
 ##### 1st Alternative: YOLO-Annotation-Tool
 
 We went to a Pool & Snooker Bar called Corona and got some footage for our project.
