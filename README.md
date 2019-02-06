@@ -27,7 +27,7 @@ BillySTAT records your Snooker statistics using YOLOv3, OpenCV and NVidia Cuda.
 - [Kristian Syrjänen](https://kristiansyrjanen.com/) 
 - [Axel Rusanen](https://axelrusanen.com)
 - [Miikka Valtonen](https://miikkavaltonen.com) **Project Manager**
-- [Matias Richterich](https://richterich.me)
+- [Matias Richterich](https://matiasrichterich.com)
 
 ***Done on Xubuntu 18.04 LTS***
 
@@ -76,7 +76,7 @@ First off we'll download NVidia drivers, let's start by adding nvidia ppa:latest
     sudo add-apt-repository ppa:graphics-drivers
     sudo apt-get update
 
-Install NVidia drivers,
+Install Nvidia drivers,
 
     sudo apt-get install nvidia-driver-410
 
@@ -255,7 +255,7 @@ Also change the 2nd line of the Makefile:
 
 #### Resizing images
 
-To resize the images to a smaller size we used the following command:
+To resize the images to a smaller size we made a script thadoes it for us, let's call it *resize.sh*:
 
 	FOLDER="/path/to/images"
 
@@ -265,6 +265,9 @@ To resize the images to a smaller size we used the following command:
 
 	find ${FOLDER} -iname '*.jpg' -exec convert \{} -verbose -resize $WIDTHx$HEIGHT\> \{} \;
 
+Run it,
+
+	./resize.sh # Or bash resize.sh, make sure you have x-rights correct
 ##### 1st Alternative: YOLO-Annotation-Tool
 
 We went to a Pool & Snooker Bar called Corona and got some footage for our project.
