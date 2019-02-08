@@ -349,3 +349,30 @@ Now run Yolo_mark again and start making your BBoxes.
 
 #### Add weights to YOLOv3
 
+
+#### Testing frame difference from video
+
+##### Virtualenv
+
+Either use earlier facecourse-py3 virtualenv or create a new one with suiting name.
+
+We created a new one, *billystat*, the same way as the facecourse virtualenv.
+
+	mkvirtualenv billystat -p python3
+	workon billystat
+	
+	pip install numpy scipy matplotlib scikit-image scikit-learn ipython
+	deactivate
+
+Create symlink
+	
+	cd ~/.virtualenvs/billystat/lib/python3.6/site-packages
+	ln -s /usr/local/lib/python3.6/dist-packages/cv2.cpython-36m-x86_64-linux-gnu.so cv2.so
+
+##### Frame diff from video with grayscale
+
+	workon billystat
+	
+	python3 billyFRAME.py
+	
+![Alt Text](https://i.imgur.com/QO2VE2P.gif)
