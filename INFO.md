@@ -24,3 +24,17 @@ Haastattelimme muutamaa Snooker-harrastelijaa ja he antoivat muutaman hyvän ide
 * Quadro K4000 hyyty kuvan tunnistuksessa (syy: 7 vuotta vanha)
 * Videonlaatu liian hyvää, joutuu skaalaamaan alaspäin (1080p/4k-->360p)
 * 
+
+
+## Miten tehdä?
+
+Viiden sekunnin välein diffi.
+
+color diff
+
+
+## Pohdiskelut
+
+Yolo vai OpenCV?
+
+
