@@ -377,3 +377,19 @@ Create symlink
 	python3 billyFRAME.py
 	
 ![Alt Text](https://i.imgur.com/QO2VE2P.gif)
+
+##### Frame diff with color
+
+We changed 
+
+	current_frame_gray = cv2.cvtColor(current_frame, cv2.COLOR_BGR2GRAY)
+	previous_frame_gray = cv2.cvtColor(previous_frame, cv2.COLOR_BGR2GRAY)
+	
+To
+
+	current_frame_color = cv2.cvtColor(current_frame, cv2.COLOR_BGR2RGB)
+	previous_frame_color = cv2.cvtColor(previous_frame, cv2.COLOR_BGR2RGB)
+
+Which results in
+
+![Alt Text](https://i.imgur.com/uYViSDV.gif)
