@@ -44,6 +44,7 @@ BillySTAT records your Snooker statistics using YOLOv3, OpenCV and NVidia Cuda.
 + Create boundaries that when crossed, counts as a point/points depending what colored ball it is.
 + Make it count statistics
 + Create GUI for statistics
++ Gather image material
 
 ## Information page
 
