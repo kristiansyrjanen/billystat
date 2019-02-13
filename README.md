@@ -36,9 +36,9 @@ BillySTAT records your Snooker statistics using YOLOv3, OpenCV and NVidia Cuda.
 ***[Images of our setup](https://imgur.com/a/qfKz9Dd)***
 
 ### Things to do
-+ Setup server
-+ Install CUDA, OpenCV3, Darknet and YOLOv3
-+ Run basic tests
++ ~~Setup server~~
++ ~~Install CUDA, OpenCV3, Darknet and YOLOv3~~
++ ~~Run basic tests~~
 + Train YOLOv3
 + Make it recognise only things relevant
 + Create boundaries that when crossed, counts as a point/points depending what colored ball it is.
