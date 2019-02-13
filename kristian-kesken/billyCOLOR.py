@@ -1,5 +1,5 @@
 #necessary packages
-import time
+from time import time, sleep
 import numpy as np
 import argparse
 import cv2
@@ -20,22 +20,33 @@ import cv2
 #    ([0,0,0], [0,0,0])        # Blackball  boundaries 7 points
 #]
 
-cap = cv2.VideoCapture('topview-snooker.mp4')
+cap = cv2.VideoCapture('/home/kristian/topview-snooker.mp4')
 ret, current_frame = cap.read()
 previous_frame = current_frame
 
 while(cap.isOpened()):
-    current_frame_color = cv2.cvtColor(current_frame, cv2.COLOR_BGR2RGB)   # or cv2.COLOR_BGR2HSV, need to test
-    previous_frame_color = cv2.cvtColor(previous_frame, cv2.COLOR_BGR2RGB) # or cv2.COLOR_BGR2HSV, need to test
+    current_frame_color = cv2.cvtColor(current_frame, cv2.COLOR_BGR2RGB)   # or cv2.COLOR_BGR2HSV, need to test, testet, looks trippy
+    previous_frame_color = cv2.cvtColor(previous_frame, cv2.COLOR_BGR2RGB) # or cv2.COLOR_BGR2HSV, need to test, tested, looks trippy
 
     frame_diff = cv2.absdiff(current_frame_color,previous_frame_color)
 
-    cv2.imshow('frame diff ',frame_diff)      
+/*fps=5
+frameperiod=1.0/fps
+now=time()
+nextframe=now+frameperiod
+
+for frame in range(120):
+    print (frame, now)
+    while (now<nextframe):
+        sleep(nextframe-now)
+        now=time()
+    nextframe+=frameperiod
+*/
+    cv2.imshow('frame diff ',frame_diff)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
     previous_frame = current_frame.copy()
     ret, current_frame = cap.read()
-
 cap.release()
 cv2.destroyAllWindows()

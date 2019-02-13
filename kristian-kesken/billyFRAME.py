@@ -1,6 +1,6 @@
 import cv2
 
-cap = cv2.VideoCapture('topview-snooker.mp4')
+cap = cv2.VideoCapture('/home/kristian/topview-snooker.mp4')
 ret, current_frame = cap.read()
 previous_frame = current_frame
 
