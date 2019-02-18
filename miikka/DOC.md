@@ -1,8 +1,10 @@
-### BillySTAT custom object training notes
+## BillySTAT custom object training notes
 
-## Before beginning, make sure you have your OpenCV/Darknet environment set up. Your exact directory structure may wary, keep that in mind.
+### Before beginning, make sure you have your OpenCV/Darknet environment set up. Your exact directory structure may wary, keep that in mind.
 
-By this point you should have your neural network environment setup. Make sure you are able to run some detection tests from images or videos. If that doesn't work, this won't either.
+!! By this point you should have your neural network environment setup. Make sure you are able to run some detection tests from images or videos. If that doesn't work, this won't either. !!
+
+# Prerequisites
 
 Let's start by copying and editing our config file:
 	
@@ -34,6 +36,9 @@ Next, create file **obj.data**. In it, fill the following information:
 	names = obj.names
 	backup = backup/ //this is where backups of weights files are made, every 1000 lines I think.
 
+
+# Marking the images
+
 Now comes the boring part. Make sure you have all your teaching material (.jpgs) ready in a single folder. Download this lovely tool made by AlexeyAB:
 
 	https://github.com/AlexeyAB/Yolo_mark
@@ -46,3 +51,26 @@ You can find more material and directions about this tool from the main README f
 
 When you are done, you should have your images in a single folder, each with their accompanying .txt file. 
 
+# Actual training - Please note: This section is still a work in progress. Things may change and, put simply, be completely wrong at any point. We are still working out the best settings to yield the best results. 
+
+Once marking is done, copy **obj.data**, **obj.names** and **train.txt** to your main darknet folder. (Or wherever you want, make sure you remember it)
+
+Now, open *train.txt**, and make sure it contains the location of every image. One image per line. Yolo_mark should create the file, but if you want to change the image location, you can do it here.
+
+For example, if all your images are in darknet/test:
+
+	test/1.jpg
+	test/2.jpg
+	test/...
+
+Great! Now before we can try training, we still need to download the premade training weights from the official site:
+
+	$ wget http://pjreddie.com/media/files/darknet53.conv.74
+
+And now, if you're feeling confident, we can finally attempt training:
+
+	./darknet detector train obj.data yolo-obj.cfg darknet53.conv.74
+
+If all goes well, you should start seeing lots of numbers:
+
+![Alt Text](https://i.imgur.com/k3sXNi0.gif)
