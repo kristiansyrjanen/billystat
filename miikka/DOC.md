@@ -74,3 +74,11 @@ And now, if you're feeling confident, we can finally attempt training:
 If all goes well, you should start seeing lots of numbers:
 
 ![Alt Text](https://i.imgur.com/k3sXNi0.gif)
+
+Is text flashing before your eyes? Great! Do you see lots of -nan? Maybe not great, who knows at this point. This is what we are trying to find out. At the moment of writing, we  believe that some nans are tolerable, but you should start seeing less and less the longer you train.
+
+If you run into CUDA memory errors, try editing the **yolo-obj.cfg** file. Worst case scenario, edit subdivions and batch to 64. You can also try editing the image dimensions, however keep in mind that they **must** be divisible by 32. Make a note of the original values, so you can return to them if things go wrong.
+
+On low memory setups, you can try copying the yolov3-tiny.cfg file from the cfg folder and making the same adjustments to it as you made to the original yolov3 cfg. Training the tiny version requires 1 GB of memory, so keep that in mind. 
+
+Stay tuned for more, next we will look at using our trained files for something useful, such as detecting objects from videos! Cool!
