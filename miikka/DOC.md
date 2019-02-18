@@ -1,10 +1,10 @@
-## BillySTAT custom object training notes
+# BillySTAT custom object training notes
 
-### Before beginning, make sure you have your OpenCV/Darknet environment set up. Your exact directory structure may wary, keep that in mind.
+## Before beginning, make sure you have your OpenCV/Darknet environment set up. Your exact directory structure may wary, keep that in mind.
 
 !! By this point you should have your neural network environment setup. Make sure you are able to run some detection tests from images or videos. If that doesn't work, this won't either. !!
 
-# Prerequisites
+### Prerequisites
 
 Let's start by copying and editing our config file:
 	
@@ -37,7 +37,7 @@ Next, create file **obj.data**. In it, fill the following information:
 	backup = backup/ //this is where backups of weights files are made, every 1000 lines I think.
 
 
-# Marking the images
+### Marking the images
 
 Now comes the boring part. Make sure you have all your teaching material (.jpgs) ready in a single folder. Download this lovely tool made by AlexeyAB:
 
@@ -51,7 +51,7 @@ You can find more material and directions about this tool from the main README f
 
 When you are done, you should have your images in a single folder, each with their accompanying .txt file. 
 
-# Actual training - Please note: This section is still a work in progress. Things may change and, put simply, be completely wrong at any point. We are still working out the best settings to yield the best results. 
+### Actual training - Please note: This section is still a work in progress. Things may change and, put simply, be completely wrong at any point. We are still working out the best settings to yield the best results. 
 
 Once marking is done, copy **obj.data**, **obj.names** and **train.txt** to your main darknet folder. (Or wherever you want, make sure you remember it)
 
@@ -79,6 +79,11 @@ Is text flashing before your eyes? Great! Do you see lots of -nan? Maybe not gre
 
 If you run into CUDA memory errors, try editing the **yolo-obj.cfg** file. Worst case scenario, edit subdivions and batch to 64. You can also try editing the image dimensions, however keep in mind that they **must** be divisible by 32. Make a note of the original values, so you can return to them if things go wrong.
 
+On an Nvidia GPU, you can open Nvidia X Server Settings to monitor GPU processor usage, as well as memory usage. It seems to be normal for the GPU usage % to jump around when training with Tiny cfg.
+
+![](https://i.imgur.com/CCGCfWr.png)
+
 On low memory setups, you can try copying the yolov3-tiny.cfg file from the cfg folder and making the same adjustments to it as you made to the original yolov3 cfg. Training the tiny version requires 1 GB of memory, so keep that in mind. 
 
 Stay tuned for more, next we will look at using our trained files for something useful, such as detecting objects from videos! Cool!
+
