@@ -55,7 +55,7 @@ When you are done, you should have your images in a single folder, each with the
 
 Once marking is done, copy **obj.data**, **obj.names** and **train.txt** to your main darknet folder. (Or wherever you want, make sure you remember it)
 
-Now, open *train.txt**, and make sure it contains the location of every image. One image per line. Yolo_mark should create the file, but if you want to change the image location, you can do it here.
+Now, open **train.txt**, and make sure it contains the location of every image. One image per line. Yolo_mark should create the file, but if you want to change the image location, you can do it here.
 
 For example, if all your images are in darknet/test:
 
