@@ -5,8 +5,8 @@ ret, current_frame = cap.read()
 previous_frame = current_frame
 
 while(cap.isOpened()):
-    current_frame_gray = cv2.cvtColor(current_frame, cv2.COLOR_BGR2GRAY)
-    previous_frame_gray = cv2.cvtColor(previous_frame, cv2.COLOR_BGR2GRAY)
+    current_frame_gray = cv2.cvtColor(current_frame, cv2.COLOR_BGR2RGB)
+    previous_frame_gray = cv2.cvtColor(previous_frame, cv2.COLOR_BGR2RGB)
 
     frame_diff = cv2.absdiff(current_frame_gray,previous_frame_gray)
 

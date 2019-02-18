@@ -34,7 +34,7 @@ while(cap.isOpened()):
     cv2.imshow('frame diff ',frame_diff)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
-sleep(1)
+    sleep(1)
     previous_frame = current_frame.copy()
     ret, current_frame = cap.read()
 cap.release()
