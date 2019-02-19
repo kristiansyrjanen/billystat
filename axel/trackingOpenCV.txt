@@ -1,2 +1,9 @@
 #https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/
 #Seuraava askel hyödyntää trackingia ja edellistä koodia yhdessä + Lisätä pussialueet ja saada ohjelma tunnistamaan kun pallo menee pois kuvasta
+#Edellinen koodi vaihtaa kuvan värin BGR -> RGB että voidaan scalea paremmin
+#GaussianBlur siistii kuvaa että voidaan keskittyä yhteen väriin, seuraavassa koodissa pitää laittaa useampaa väriä
+#Filttereissä määritelty max brightness ja min brightness ja mikä on isoin punainen ja pienin punainen
+#Nykyinen koodi ympyröi isoimman pallon, mikä ei ole hyvä ominaisuus meidän käyttötarkoitukseen, mutta halusin testata silti uusia funktioita
+#Clearaa maskit mitkä tehtiin aikasemmin
+#Vaihtaa takasin väriskaalan
+#Tekee uuden kuvan missä on ympyröity
