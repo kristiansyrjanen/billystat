@@ -74,10 +74,38 @@ if we transform the colors of the entire picture using saturation, exposure, and
 Number of iterations:
 For an n-classes object detector, it is advisable to run the training for at least 2000*n batches. 
 
+
 Training YOLOv3:
 Log file example : ./darknet detector train /path/to/snowman/darknet.data  /path/to/snowman/darknet-yolov3.cfg ./darknet53.conv.74 > /path/to/snowman/train.log 
 save the training log to a file called train.log in your dataset directory so that we can progress the loss as the training goes on.A useful way to monitor the loss while training is using the grep command on the train.log file
 
 grep "avg" /path/to/snowman/train.log
 
+ Nan:
+ 1. `nan` occurs when there isn't labels (box truth) for anchors in this `[yolo]`-layer (`anchor=` which are specified in `mask=` in cfg-file for the current one of three yolo-layers)
+     
+     2. `nan` occurs when there isn't labels for this image at all (negative samples).
+ 
 
+ Only if `nan` occurs for `avg loss` for several dozen consecutive iterations, then training went wrong. Otherwise, the training goes well.
+
+https://github.com/AlexeyAB/darknet/issues/636#issuecomment-381400954
+
+> According to your instructions, you say yolo v3 requires 4GB GPU RAM. buy why does it take over 4GB on my environment?
+> Are there any configuration I could miss ?
+
+Yolo v3 requires *4 GB GPU* RAM + *~2 GB CPU* RAM ~= 6 GB RAM.
+
+But Jetson TX2 has *only one type of memory* LPDDR4 that is shared across CPU and GPU, so total spent 6 GB RAM: https://devtalk.nvidia.com/default/topic/1002349/jetson-tx2/jetson-tx2-gpu-memory-/
+
+3\. anchors, bias_match
+        `anchors` are frequent initial <width,height> of objects in terms of output network resolution.
+        `bias_match` used only for training, if bias_match=1 then detected object will have <width,height> the same as in one of anchor, else if bias_match=0 then <width,height> of anchor will be refined by a neural network: 
+          
+            
+              [darknet/src/region_layer.c](https://github.com/AlexeyAB/darknet/blob/c1904068afc431ca54771e5dc20f2c588e876956/src/region_layer.c#L275-L283)
+            
+            
+                Lines 275 to 283
+              in
+              [c190406](/AlexeyAB/darknet/commit/c1904068afc431ca54771e5dc20f2c588e876956)

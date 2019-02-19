@@ -1,3 +1,0 @@
-/home/matias/darknet/dataset/images/10.jpg
-/home/matias/darknet/dataset/images/8.jpg
-/home/matias/darknet/dataset/images/12.jpg
