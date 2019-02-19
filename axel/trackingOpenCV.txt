@@ -1,0 +1,2 @@
+#https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/
+#Seuraava askel hyödyntää trackingia ja edellistä koodia yhdessä + Lisätä pussialueet ja saada ohjelma tunnistamaan kun pallo menee pois kuvasta
