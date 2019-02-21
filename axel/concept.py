@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 #TODO opencv:stä jotenkin keskipiste objekteille -> lista objektien koordinaateista
+# Objekti on siis kokoelma pikseleitä 
 
 
 def listaa_pallot():
