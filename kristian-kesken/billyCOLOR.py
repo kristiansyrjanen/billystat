@@ -37,5 +37,6 @@ while(cap.isOpened()):
     sleep(0.2)
     previous_frame = current_frame.copy()
     ret, current_frame = cap.read()
+    
 cap.release()
 cv2.destroyAllWindows()
