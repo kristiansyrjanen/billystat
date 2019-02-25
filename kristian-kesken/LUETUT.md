@@ -27,3 +27,15 @@ https://www.pyimagesearch.com/2018/08/13/opencv-people-counter/
 https://towardsdatascience.com/object-detection-with-10-lines-of-code-d6cb4d86f606
 
 https://github.com/OlafenwaMoses/ImageAI
+
+https://www.pyimagesearch.com/2014/08/04/opencv-python-color-detection/
+
+https://www.programcreek.com/python/example/70463/cv2.COLOR_BGR2HSV
+
+https://www.pythoncentral.io/pythons-time-sleep-pause-wait-sleep-stop-your-code/
+
+https://github.com/llSourcell/Object_Detection_demo_LIVE
+
+https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/
+
+https://www.pyimagesearch.com/static/cv_dl_resource_guide.pdf
