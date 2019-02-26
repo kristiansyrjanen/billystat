@@ -4,7 +4,7 @@ import numpy as np
 import cv2
 
 # Capture video from file
-cap=cv2.VideoCapture("topview-snooker.mp4")
+cap=cv2.VideoCapture("/home/kristian/topview-snooker.mp4")
 
 old_frame = None
 

@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
  
-cap = cv2.VideoCapture("topview-snooker.mp4")
+cap = cv2.VideoCapture("/home/kristian/topview-snooker.mp4")
  
 _, first_frame = cap.read()
 first_gray = cv2.cvtColor(first_frame, cv2.COLOR_BGR2GRAY)

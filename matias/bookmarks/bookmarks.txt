@@ -1,0 +1,111 @@
+https://www.learnopencv.com/training-yolov3-deep-learning-based-custom-object-detector/
+Ei testattu vielä. Kerrotaan miten luoda oma custom paino valmiilla kuvasetillä ja annotaatioilla. Valmiita skriptejä, kuten automaattisesti jakaa training ja test setteihin, tekee .txt
+tiedostot niistä, ei lue mitä tekee, mutta luultavasti kirjoittaa automaattisesti kuvien polun darknetin frameworkille. Ohjeessa tehdään muutoin alusta loppuun.
+
+    Training set : This is the part of the data on which we train the model. Depending on the amount of data you have, you can randomly select between 70% to 90% of the data for training.
+    Test set : This is the part of the data on which we test our model. Typically, this is 10-30% of the data. No image should be part of the both the training and the test set.
+
+Kuinka monen iteraation jälkeen paino tallenetaan:
+In the file examples/detector.c, change line#135 from
+if(i%10000==0 || (i < 1000 && i%100 == 0)){ 
+
+to
+if(i%1000==0 || (i < 2000 && i%200 == 0)){
+
+The original repo saves the network weights after every 100 iterations till the first 1000 and then saves only after every 10000 iterations.
+
+After the above changes are made, recompile darknet using the make command again.
+
+Data Annotation: 
+Jokaisesta kuvasta tehtävä tekstitiedosto sisältää <object-class-id> <center-x> <center-y> <width> <height> 
+
+object-class-id is an integer representing the class of the object.
+
+center-x and center-y are respectively the x and y coordinates of the center of the bounding box, normalized (divided) by the image width and height respectively.
+
+width and height are respectively the width and height of the bounding box, again normalized (divided) by the image width and height respectively
+
+an example with the following notations:
+
+x – x-coordinate(in pixels) of the center of the bounding box
+y – y-coordinate(in pixels) of the center of the bounding box
+w – width(in pixels) of the bounding box
+h – height(in pixels) of the bounding box
+W – width(in pixels) of the whole image
+H – height(in pixels) of the whole image
+
+Then we compute the annotation values in the label files as follows:
+
+center-x = x / W
+center-y = y / H
+width = w / W
+height = h / H
+
+Pre-trained model:
+transfer learning means using already trained weight to teach our new weight faster.
+
+batch hyper-parameter in YOLOv3:
+The training process involves iteratively updating the weights of the neural network based on how many mistakes it is making on the training dataset.
+a small subset of images is used in one iteration, and this subset is called the batch size.
+When the batch size is set to 64, it means 64 images are used in one iteration to update the parameters of the neural network.
+
+subdivisions configuration parameter in YOLOv3:
+subdivisions lets you process a fraction of the batch size at one time on your GPU. 
+You can start the training with subdivisions=1, and if you get and Out of memory error, increase the subdivisions parameter by multiples of 2(e.g. 2, 4, 8, 16) till the training proceeds successfully. The GPU will process batch/subdivision number of images at any time, but the full batch or iteration would be complete only after all the 64 (as set above) images are processed.
+
+width, height, channels:
+ images are first resized to widthxheight before training.The results might improve if we increase it , but it would take longer to train. channels=3 indicates that we would be processing 3-channel RGB input images.
+
+Momentum and Decay:
+parameters that control how the weight is updated. momentum is used to penalize large weight changes between iterations. 
+neural network has millions of weights and therefore they can easily overfit any training data. Overfitting simply means it will do very well on training data and poorly on test data.mitigate this problem is to penalize large value for weights. The parameter decay controls this penalty term.
+
+Learning Rate, Steps, Scales, Burn In (warm up):
+learning rate controls how aggressively we should learn based on the current batch of data.
+starting with zero information= learning rate needs to be high.
+as the neural network sees a lot of data = weights need to change less aggressively.decrease in learning rate is accomplished by first specifying that our learning rate decreasing policy is steps. In the above example, the learning rate will start from 0.001 and remain constant for 3800 iterations, and then it will multiply by scales to get the new learning rate. We could have also specified multiple steps and scales.
+has been empirically found that the training speed tends to increase if we have a lower learning rate for a short period of time at the very beginning. This is controlled by the burn_in parameter. Sometimes this burn-in period is also called warm up period.
+
+Data augmentation:
+ angle parameter allows you to randomly rotate the given image by ± angle.
+if we transform the colors of the entire picture using saturation, exposure, and hue, it is still a picture of the snowman.
+
+
+Number of iterations:
+For an n-classes object detector, it is advisable to run the training for at least 2000*n batches. 
+
+
+Training YOLOv3:
+Log file example : ./darknet detector train /path/to/snowman/darknet.data  /path/to/snowman/darknet-yolov3.cfg ./darknet53.conv.74 > /path/to/snowman/train.log 
+save the training log to a file called train.log in your dataset directory so that we can progress the loss as the training goes on.A useful way to monitor the loss while training is using the grep command on the train.log file
+
+grep "avg" /path/to/snowman/train.log
+
+ Nan:
+ 1. `nan` occurs when there isn't labels (box truth) for anchors in this `[yolo]`-layer (`anchor=` which are specified in `mask=` in cfg-file for the current one of three yolo-layers)
+     
+     2. `nan` occurs when there isn't labels for this image at all (negative samples).
+ 
+
+ Only if `nan` occurs for `avg loss` for several dozen consecutive iterations, then training went wrong. Otherwise, the training goes well.
+
+https://github.com/AlexeyAB/darknet/issues/636#issuecomment-381400954
+
+> According to your instructions, you say yolo v3 requires 4GB GPU RAM. buy why does it take over 4GB on my environment?
+> Are there any configuration I could miss ?
+
+Yolo v3 requires *4 GB GPU* RAM + *~2 GB CPU* RAM ~= 6 GB RAM.
+
+But Jetson TX2 has *only one type of memory* LPDDR4 that is shared across CPU and GPU, so total spent 6 GB RAM: https://devtalk.nvidia.com/default/topic/1002349/jetson-tx2/jetson-tx2-gpu-memory-/
+
+3\. anchors, bias_match
+        `anchors` are frequent initial <width,height> of objects in terms of output network resolution.
+        `bias_match` used only for training, if bias_match=1 then detected object will have <width,height> the same as in one of anchor, else if bias_match=0 then <width,height> of anchor will be refined by a neural network: 
+          
+            
+              [darknet/src/region_layer.c](https://github.com/AlexeyAB/darknet/blob/c1904068afc431ca54771e5dc20f2c588e876956/src/region_layer.c#L275-L283)
+            
+            
+                Lines 275 to 283
+              in
+              [c190406](/AlexeyAB/darknet/commit/c1904068afc431ca54771e5dc20f2c588e876956)

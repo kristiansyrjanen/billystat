@@ -1,4 +1,4 @@
-classes= 8  
+classes= 23  
 train  = custom/train.txt  
 valid  = custom/test.txt  
 names = custom/objects.names  

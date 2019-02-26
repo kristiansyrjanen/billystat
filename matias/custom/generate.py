@@ -1,7 +1,7 @@
 import glob, os
 
 
-dataset_path = '/home/matias/darknet/dataset/images/'
+dataset_path = '/media/matias/3335-3231/DCIM/100D5300/'
 
 # Percentage of images to be used for the test set
 percentage_test = 12;
