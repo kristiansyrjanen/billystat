@@ -1,4 +1,4 @@
-We became suspicious of if the training had any effect at all, so we decided to stage a very small scale test.
+We became suspicious if the training had any effect at all, so we decided to stage a very small scale test.
 
 I took around 20 pictures of two empty bottles and a computer mouse. 
 
@@ -12,6 +12,8 @@ I then took some video of bottles and the computer mouse used, and tested if the
 
 	./darknet detector test obj.data yolov3-tiny.cfg yolov3-tiny_30000.weights
 
-![Alt Text](https://i.imgur.com/HpXd4KQ.mp4)
+<video width="320" height="240" controls>
+  <source src="Results.gif" type="video/gif">
+</video>
 
 It's not much but it IS something! The object name is totally wrong, but at least now we can be sure that our training actually does SOMETHING. Now it's just a matter of making it do the right things.
