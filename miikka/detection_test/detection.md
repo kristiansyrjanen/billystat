@@ -1,8 +1,8 @@
 We became suspicious if the training had any effect at all, so we decided to stage a very small scale test.
 
-I took around 20 pictures of two empty bottles and a computer mouse. 
+I took around 20 pictures of two empty bottles and a computer mouse, and went through the process of preparing them for training. 
 
-I then commenced training as per usual:
+Then I commenced training as per usual:
 
 	./darknet detector train obj.data yolov3-tiny.cfg darknet19_448.conv.23
 
@@ -12,7 +12,7 @@ I then took some video of bottles and the computer mouse used, and tested if the
 
 	./darknet detector test obj.data yolov3-tiny.cfg yolov3-tiny_30000.weights
 
-<video width="320" height="240" controls>
+<video width="320" height="240">
   <source src="Results.gif" type="video/gif">
 </video>
 
