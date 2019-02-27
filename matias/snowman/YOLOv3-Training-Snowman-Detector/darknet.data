@@ -1,0 +1,6 @@
+classes = 1
+train  = /home/matias/snowman/YOLOv3-Training-Snowman-Detector/snowman_train.txt
+valid  = /home/matias/snowman/YOLOv3-Training-Snowman-Detector/snowman_test.txt
+names = /home/matias/snowman/YOLOv3-Training-Snowman-Detector/classes.names
+backup = /home/matias/snowman/YOLOv3-Training-Snowman-Detector/darknet/backup/
+
