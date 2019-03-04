@@ -6,21 +6,22 @@ import cv2
 from matplotlib import pyplot as plt
 import numpy as np
 from math import cos, sin
-
+#Määritellään vihreän skaala
 green = (0, 255, 0)
-
+#Määritellään kuvan koko leveys - korkeus tuumina, overlay maskissa määritellään gray to rgb väriskaala
 def show(image):
 	plt.figure(figsize=(10, 10))
 	plt.imshow(image, interpolation='nearest')
 def overlay_mask(mask, image):
 	rgb_mask = cv2.cvtColor(mask, cv2.COLOR_GRAY2RGB)
+	#laskee kahden taulukon weighted summaa. määritellään mitä painotetaan enemmän ja vika 0 on depth
 	img = cv2.addWeighted(rgb_mask, 0.5, image, 0.5, 0)
 	return img
 def find_redballs(image):
 	image = image.copy()
 	image, contours, hierarchy = cv2.findContours(image, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
 	mask = np.zeros(image.shape, np.uint8)
-	#Ei tarvitse tehdä hakua isoimmasta, koska haluan kaikki punaiset pallot
+	#Ei tarvitse tehdä hakua isoimmasta, koska haluan kaikki punaiset pallot. Alkuperäisessä koodissa etsittiin isointa mansikkaa
 	cv2.drawContours(mask, contours, -1, 255, -1)
 	return contours, mask
 
