@@ -92,7 +92,7 @@ First off we'll download NVidia drivers, let's start by adding nvidia ppa:latest
     sudo add-apt-repository ppa:graphics-drivers
     sudo apt-get update
 
-Install Nvidia drivers,
+Install Nvidia drivers, (NOTE! At the time of writing, Cuda 10 FORCES 410 drivers. Meaning, if you have 415 or newer drivers installed, they will be uninstalled and replaced with 410 drivers. With some work this can be avoided, but you can just reinstall the newer drivers afterwards if necessary.)YOLOv3
 
     sudo apt-get install nvidia-driver-410
 
