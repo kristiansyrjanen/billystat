@@ -265,13 +265,59 @@ Also change the 2nd line of the Makefile:
 	# Try it with:
 	# ./darknet imtest data/eagle.jpg
 
+#### Installing Nextcloud for cloud-storage with docker-compose
+
+We decided to use docker-compose to create a container that runs Nextcloud so that we could easily share our training material (pictures/video). 
+
+	cd
+	mkdir nextcloud
+	nano nextcloud/docker-compose.yml
+
+We need a docker-compose.yml that looks like this,
+
+	version: '3'
+
+	volumes:
+	  nextcloud:
+	  db:
+
+	services:
+	  db:
+	    image: mariadb
+	    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+	    restart: always
+	    volumes:
+	      - db:/var/lib/mysql
+	    environment:
+	      - MYSQL_ROOT_PASSWORD=password
+	      - MYSQL_PASSWORD=password
+	      - MYSQL_DATABASE=nextcloud
+	      - MYSQL_USER=username
+
+	  app:
+	    image: nextcloud
+	    ports:
+	      - 8080:80
+	    links:
+	      - db
+	    volumes:
+	      - nextcloud:/var/www/html
+	    restart: always
+
+Then just run docker-compose,
+
+	sudo docker-compose up -d
+	
+Now we have Nextcloud running on our project-machine.
+
+
 ### Training your neural networks
 
 #### Creating training material
 
 #### Resizing images
 
-To resize the images to a smaller size we made a script thadoes it for us, let's call it *resize.sh*:
+To resize the images to a smaller size we made a script that does it for us, let's call it *resize.sh*:
 
 	FOLDER="/path/to/images"
 
