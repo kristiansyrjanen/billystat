@@ -419,7 +419,76 @@ Now run Yolo_mark again and start making your BBoxes.
 
 ![Alt Text](https://i.imgur.com/O1JsSZs.gif)
 
+### Actual training - Please note: at the time of writing, this section is still a work in progress. Things may changed and put simply, be completely wrong. We are still working out the best settings to yield the best results.
+#### Also make sure have your labeling tool ready. We recommend Yolo_mark, it seems to be the best one out there by far.
 
+Let's start by copying and editing our config file:
+
+         cp darknet/cfg/yolov3.cfg ../yolo-obj.cfg
+
+Edit the line **batch** to **batch=64**.
+
+Edit the line **subdivisions** to **subdivisions=64**. If your GPU has lots of memory (over 4GB), you can lower the subdivision nu$
+
+Edit the line number 610 **classes** to whatever the amount of objects you want to detect is. For example, if you have 10 colors y$
+
+Do the same for lines 696 and 783 as well.
+
+Edit the line number 603 **filters** to whatever your amount of objects + 5 and multiply it by 3. (Objects+5)x3. For example, with$
+
+Do the same for lines 689 and 776 as well.
+
+After this, create file **obj.names** in your darknet directory.
+
+Write the names of all your objects you want to detect, each in their own line.
+
+For example, if we wanted to detect colors, we would start listing: 1. Green, 2. Blue, 3. Yellow, and so on. **Make sure each obje$
+
+Next, create file **obj.data**. In it, fill the following information:
+
+         classes= 10 //the number of your objects
+         train = train.txt //you can change these paths if your directory structure differs
+         valid = train.txt //^
+         names = obj.names
+         backup = backup/ //this is where backups of weights files are made, every 1000 lines I thin
+
+#### Marking the images
+
+Now comes the boring part. Make sure you have all your teaching material (.jpgs) ready in Yolo_mark/x64/Release/data/img/.
+
+Back up a bit and launch Yolomark in its top directory:
+
+	$ sh linux_mark.sh
+
+![](https://i.imgur.com/Nvoa8j4.jpg)
+
+It's time to start creating boxes. It's long and tedious work, but it needs to be done. You can change the Object ID from the lower slider, the upper slider can be used to browse pictures. Alternatively you can click the next picture from the top of the screen.
+
+When you are done, you should have a text file for each respective .jpg file in Yolo_mark/x64/Release/data/img/. If this is correct, give yourself a tap on the back. 
+
+Copy **obj.data**, **obj.names** and **train.txt** to your main darknet folder. (Or wherever you want, make sure you remember it.)
+
+Now, open **train.txt**, and make sure it contains the location of every image. One image per line. Yolo_mark should create the file, but if you want to change the image location, you can do it here.
+
+Great! Now before we can try training, we still need to download the premade training weights from the official site:
+
+	$ wget http://pjreddie.com/media/files/darknet53.conv.74
+
+And now, if you're feeling confident, we can finally attempt training:
+
+	$ ./darknet detector train obj.data yolo-obj.cfg darknet53.conv.74
+
+If all goes well, you should start seeing lots of numbers:
+
+![Alt Text](https://i.imgur.com/k3sXNi0.gif)
+
+Is text flashing before your eyes? Great! Do you see lots of -nan? Maybe not great, who knows at this point. This is what we are trying to find out. At the moment of writing, we  believe that some nans are tolerable, but you should start seeing less and less the longe$
+
+If you run into CUDA memory errors, try editing the **yolo-obj.cfg** file. Worst case scenario, edit subdivions and batch to 64. You can also try editing the image dimensions, however keep in mind that they **must** be divisible by 32. Make a note of the original valu$
+
+On an Nvidia GPU, you can open Nvidia X Server Settings to monitor GPU processor usage, as well as memory usage. It seems to be normal for the GPU usage % to jump around when training with Tiny cfg.
+
+Darknet will generate a weights file every 100 iterations until it reaches 1000 iterations, after which a backup will be saved after every 1000 iterations.
 
 ### Add weights to YOLOv3
 
