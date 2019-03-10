@@ -419,7 +419,7 @@ Now run Yolo_mark again and start making your BBoxes.
 
 ![Alt Text](https://i.imgur.com/O1JsSZs.gif)
 
-### Actual training - Please note: at the time of writing, this section is still a work in progress. Things may changed and put simply, be completely wrong. We are still working out the best settings to yield the best results.
+## Actual training - Please note: at the time of writing, this section is still a work in progress. Things may changed and put simply, be completely wrong. We are still working out the best settings to yield the best results.
 #### Also make sure have your labeling tool ready. We recommend Yolo_mark, it seems to be the best one out there by far.
 
 Let's start by copying and editing our config file:
@@ -482,9 +482,9 @@ If all goes well, you should start seeing lots of numbers:
 
 ![Alt Text](https://i.imgur.com/k3sXNi0.gif)
 
-Is text flashing before your eyes? Great! Do you see lots of -nan? Maybe not great, who knows at this point. This is what we are trying to find out. At the moment of writing, we  believe that some nans are tolerable, but you should start seeing less and less the longe$
+Is text flashing before your eyes? Great! Do you see lots of -nan? Maybe not great, who knows at this point. This is what we are trying to find out. At the moment of writing, we  believe that some nans are tolerable, but you should start seeing less and less the longer you iterate.
 
-If you run into CUDA memory errors, try editing the **yolo-obj.cfg** file. Worst case scenario, edit subdivions and batch to 64. You can also try editing the image dimensions, however keep in mind that they **must** be divisible by 32. Make a note of the original valu$
+If you run into CUDA memory errors, try editing the **yolo-obj.cfg** file. Worst case scenario, edit subdivions and batch to 64. You can also try editing the image dimensions, however keep in mind that they **must** be divisible by 32. Make a note of the original value in case you need to revert changes.
 
 On an Nvidia GPU, you can open Nvidia X Server Settings to monitor GPU processor usage, as well as memory usage. It seems to be normal for the GPU usage % to jump around when training with Tiny cfg.
 
