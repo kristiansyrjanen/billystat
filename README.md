@@ -85,8 +85,8 @@ Config changes on 01-network-manager-all.yaml
 
 And on our router we enabled port-forwarding to a desired port.
 
-### Installations
-#### Nvidia drivers
+## Installations
+### Nvidia drivers
 First off we'll download NVidia drivers, let's start by adding nvidia ppa:latest,
 
     sudo add-apt-repository ppa:graphics-drivers
@@ -100,7 +100,7 @@ And reboot
 
     sudo reboot
     
-#### CUDA installation
+### CUDA installation
 
 Head on to the [download page](https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1804&target_type=debnetwork), download the needed file and proceed with instructions.
 
@@ -118,7 +118,7 @@ Reboot and try out nvidia-smi
 
     nvidia-smi
 
-#### OpenCV3
+### OpenCV3
 This is taken from the OpenCV3 installation page.
 
 **Install OS libraries**
@@ -244,7 +244,7 @@ This is taken from the OpenCV3 installation page.
     // Exit virtual environment with deactivate
     deactivate
 
-#### Installing Darknet
+### Installing Darknet
 
 	git clone https://github.com/pjreddie/darknet.git
 	cd darknet
@@ -265,7 +265,7 @@ Also change the 2nd line of the Makefile:
 	# Try it with:
 	# ./darknet imtest data/eagle.jpg
 
-#### Installing Nextcloud for cloud-storage with docker-compose
+### Installing Nextcloud for cloud-storage with docker-compose
 
 We decided to use docker-compose to create a container that runs Nextcloud so that we could easily share our training material (pictures/video). 
 
@@ -311,9 +311,9 @@ Then just run docker-compose,
 Now we have Nextcloud running on our project-machine.
 
 
-### Training your neural networks
+## Training your neural networks
 
-#### Creating training material
+### Creating training material
 
 #### Resizing images
 
@@ -330,7 +330,7 @@ To resize the images to a smaller size we made a script that does it for us, let
 Run it,
 
 	./resize.sh # Or bash resize.sh, make sure you have x-rights correct
-##### 1st Alternative: YOLO-Annotation-Tool
+#### 1st Alternative: YOLO-Annotation-Tool
 
 We went to a Pool & Snooker Bar called Corona and got some footage for our project.
 
@@ -370,7 +370,7 @@ Although the labeling works well, we wouldn't get the program to run convert.py 
 It would either create empty files or say that we didn't have some obscure directories (e.g. a directory with the name of our image).
 
 
-##### 2nd Alternative: Open Labeling
+#### 2nd Alternative: Open Labeling
 
 We also tried another labeling-tool called [Open Labeling](https://github.com/Cartucho/OpenLabeling).
 
@@ -383,7 +383,7 @@ You can install everything at once by simply running:
 
 Ran the program, shut it down and tried reopening it again and was greeted by Error messages. That was the first and last time we got it to work.
 
-##### 3rd Alternative: Yolo_mark by AlexeyAB
+#### 3rd Alternative: Yolo_mark by AlexeyAB
 
 Luckily we found an Annotation Tool called [Yolo_mark](https://github.com/AlexeyAB/Yolo_mark)  by the creator of Darknet, AlexeyAB.
 
@@ -409,12 +409,12 @@ Now run Yolo_mark again and start making your BBoxes.
 
 
 
-#### Add weights to YOLOv3
+### Add weights to YOLOv3
 
 
-#### Testing frame difference from video
+## Testing frame difference from video
 
-##### Virtualenv
+### Virtualenv
 
 Either use earlier facecourse-py3 virtualenv or create a new one with suiting name.
 
@@ -431,7 +431,7 @@ Create symlink
 	cd ~/.virtualenvs/billystat/lib/python3.6/site-packages
 	ln -s /usr/local/lib/python3.6/dist-packages/cv2.cpython-36m-x86_64-linux-gnu.so cv2.so
 
-##### Frame diff from video with grayscale
+### Frame diff from video with grayscale
 
 	workon billystat
 	
@@ -439,7 +439,7 @@ Create symlink
 	
 ![Alt Text](https://i.imgur.com/QO2VE2P.gif)
 
-##### Frame diff with color
+### Frame diff with color
 
 We changed 
 
@@ -454,3 +454,19 @@ To
 Which results in
 
 ![Alt Text](https://i.imgur.com/uYViSDV.gif)
+
+This is nice but need something a bit different.
+
+## Ball Tracking
+
+We found a nice article by Adrian Rosebrock, the creator of [pyimagesearch.com](https://www.pyimagesearch.com/), where he creates a [Ball tracking-code](https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/) with OpenCV.
+
+We decided to try it out and see for ourselves how it works out.
+
+We needed to use a different HSV value (Adrian had a greenball) for our red colored snookerballs. We tried swapping the HSV-values with a lot of different red tones and just didn't manage to get it to detect them. Might have been because of our material that was really poor quality.
+
+### Getting more material
+
+So we headed out to [Tapanilan Urheilukeskus](https://tapanilanurheilu.fi/), who let us use their Snooker-tables and space, to film better material for our project. We used a good few hours and racked up about 1300 images and 2½ hours of footage. A special thanks goes to [Tapanilan Urheilukeskus](https://tapanilanurheilu.fi/).
+
+
