@@ -310,6 +310,18 @@ Then just run docker-compose,
 	
 Now we have Nextcloud running on our project-machine.
 
+### Nextcloud client for easy syncing
+
+To get our material easily synced between our machines we got ourselves the [Nextcloud client](https://nextcloud.com/install/#install-clients). We downloaded the Linux AppImage, changed permissions and ran it.
+
+	chmod +x Nextcloud-2.5.1-x86_64.AppImage
+	./Nextcloud-2.5.1-x86_64.AppImage
+
+We added our Nextcloud path which to sync with.
+
+	192.0.1.2:5050 #This is just an example-address and port-numbers
+	
+This way we all have the same material at all times and synchronized.
 
 ## Training your neural networks
 
@@ -468,5 +480,3 @@ We needed to use a different HSV value (Adrian had a greenball) for our red colo
 ### Getting more material
 
 So we headed out to [Tapanilan Urheilukeskus](https://tapanilanurheilu.fi/), who let us use their Snooker-tables and space, to film better material for our project. We used a good few hours and racked up about 1300 images and 2½ hours of footage. A special thanks goes to [Tapanilan Urheilukeskus](https://tapanilanurheilu.fi/).
-
-
