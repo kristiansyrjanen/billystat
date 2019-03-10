@@ -419,7 +419,7 @@ Now run Yolo_mark again and start making your BBoxes.
 
 ![Alt Text](https://i.imgur.com/O1JsSZs.gif)
 
-## Actual training - Please note: at the time of writing, this section is still a work in progress. Things may changed and put simply, be completely wrong. We are still working out the best settings to yield the best results.
+## Actual training - Please note: at the time of writing, this section is still a work in progress. Things may change and put simply, be completely wrong. We are still working out the best settings to yield the best results.
 #### Also make sure have your labeling tool ready. We recommend Yolo_mark, it seems to be the best one out there by far.
 
 Let's start by copying and editing our config file:
