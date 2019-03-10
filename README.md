@@ -459,7 +459,7 @@ This is nice but need something a bit different.
 
 ## Ball Tracking
 
-We found a nice article by Adrian Rosebrock, the creator of [pyimagesearch.com](https://www.pyimagesearch.com/), where he creates a [Ball tracking-code](https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/) with OpenCV.
+We found a nice article by Adrian Rosebrock, the creator of [pyimagesearch.com](https://www.pyimagesearch.com/), where he creates a [Ball tracking-code](https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/) with Python3 using OpenCV.
 
 We decided to try it out and see for ourselves how it works out.
 
