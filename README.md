@@ -490,8 +490,6 @@ On an Nvidia GPU, you can open Nvidia X Server Settings to monitor GPU processor
 
 Darknet will generate a weights file every 100 iterations until it reaches 1000 iterations, after which a backup will be saved after every 1000 iterations.
 
-### Add weights to YOLOv3
-
 
 ## Testing frame difference from video
 
