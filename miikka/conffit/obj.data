@@ -1,4 +1,4 @@
-classes= 2
+classes= 8
 train  = train.txt
 valid  = train.txt
 names = obj.names
