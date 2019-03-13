@@ -58,6 +58,28 @@ def filter_contours(input_contours, min_radius, max_radius):#, min_area, min_wid
 
 	return center
 
+def find_circles(bgrframe, min_radius, max_radius):
+
+	grayframe = cv2.cvtColor(bgrframe, cv2.COLOR_BGR2GRAY)
+
+	#print("went gray")
+
+	circles = cv2.HoughCircles(grayframe,cv2.HOUGH_GRADIENT,1,6,
+                            param1=100,param2=20,minRadius=min_radius,maxRadius=max_radius)
+
+	#print("got circles")
+
+	if circles is not None:
+		circles = np.uint16(np.around(circles))
+
+		for i in circles[0,:]:
+			cv2.circle(bgrframe,(i[0],i[1]),i[2],(0,255,0),2)
+			#print("Putting dots...")
+			cv2.circle(bgrframe,(i[0],i[1]),2,(0,0,255),3)
+
+
+
+
 # construct the argument parse and parse the arguments
 
 ap = argparse.ArgumentParser()
@@ -66,10 +88,12 @@ ap.add_argument("-b", "--buffer", type=int, default=64, help="max buffer size")
 args = vars(ap.parse_args())
 
 # define color boundaries in 2x hsv
-redLower_1 = np.array([170, 70, 50])
+
+factor = 255/100
+redLower_1 = np.array([165, 100, 100])
 redUpper_1 = np.array([180, 255, 255])
 
-redLower_2 = np.array([0, 70, 50])
+redLower_2 = np.array([0, 100, 100])
 redUpper_2 = np.array([10, 255, 255])
 
 blueLower1 = np.array([210,88,37])
@@ -108,8 +132,8 @@ min_width = 0
 max_width = 1000
 min_height = 0
 max_height = 1000
-min_radius = 20
-max_radius = 100
+min_radius = 4
+max_radius = 15
 
 pts = deque(maxlen=args["buffer"])
 
@@ -143,9 +167,9 @@ def get_contours(frame, hsv, color_min, color_max, color_min2, color_max2):
 	center = filter_contours(cnts, min_radius, max_radius)#min_area, min_width, max_width, min_height, max_height)
 
 	if center:
-		cv2.circle(mask, center, 5, (0, 0, 255), -1)
+		cv2.circle(frame, center, 5, (0, 0, 255), -1)
 
-	return mask, center
+	return frame, mask, center
 
 while True:
 # current frame
@@ -159,10 +183,13 @@ while True:
 		break
 	# resize, blur, convert
 	frame = imutils.resize(frame, width=1280)
-	blurred = cv2.GaussianBlur(frame, (11,11),0)
-	hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV)
+	#blurred = cv2.medianBlur(frame, 7)
+	blurred = cv2.GaussianBlur(frame, (3,3),0)
+	#hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV)
 
-	mask, red_center = get_contours(frame, hsv, redLower_1, redUpper_1, redLower_2, redUpper_2)
+	#frame, mask, red_center = get_contours(frame, hsv, redLower_1, redUpper_1, redLower_2, redUpper_2)
+
+	find_circles(blurred, min_radius = min_radius, max_radius=max_radius)
 
 	# # create masks for color "red" 1 + 2
 	# mask1 = cv2.inRange(hsv, redLower_1, redUpper_1)
@@ -214,7 +241,7 @@ while True:
 	# 	cv2.line(frame, pts[i - 1], pts[i], (0, 0, 255), thickness)
 
 # show the frame to our screen
-	cv2.imshow("SnookerBall Tracking Frame", mask)
+	cv2.imshow("SnookerBall Tracking Frame", blurred)
 	key = cv2.waitKey(1) & 0xFF
 	if key == ord("q"):
 		break
