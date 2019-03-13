@@ -126,6 +126,12 @@ blackUpper1 = np.array([60,78,100])
 blackLower2 = np.array([72,80,58])
 blackUpper2 = np.array([60,78,100])
 
+brownLower1 = np.array([72,80,58])
+brownUpper1 = np.array([60,78,100])
+
+brownLower2 = np.array([72,80,58])
+brownUpper2 = np.array([60,78,100])
+
 # define the size of a single ball
 min_area = 150
 min_width = 0

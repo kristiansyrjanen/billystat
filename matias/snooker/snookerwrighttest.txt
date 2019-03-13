@@ -1,0 +1,3 @@
+Moved our configurations to darknet folder got results with command
+./darknet detector demo conffit/obj.data conffit/yolov3-tiny.cfg conffit/snooker_40k.weights data/00002.MTS
+

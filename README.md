@@ -85,14 +85,14 @@ Config changes on 01-network-manager-all.yaml
 
 And on our router we enabled port-forwarding to a desired port.
 
-### Installations
-#### Nvidia drivers
+## Installations
+### Nvidia drivers
 First off we'll download NVidia drivers, let's start by adding nvidia ppa:latest,
 
     sudo add-apt-repository ppa:graphics-drivers
     sudo apt-get update
 
-Install Nvidia drivers,
+Install Nvidia drivers, (NOTE! At the time of writing, Cuda 10 FORCES 410 drivers. Meaning, if you have 415 or newer drivers installed, they will be uninstalled and replaced with 410 drivers. With some work this can be avoided, but you can just reinstall the newer drivers afterwards if necessary.)
 
     sudo apt-get install nvidia-driver-410
 
@@ -100,7 +100,7 @@ And reboot
 
     sudo reboot
     
-#### CUDA installation
+### CUDA installation
 
 Head on to the [download page](https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1804&target_type=debnetwork), download the needed file and proceed with instructions.
 
@@ -118,7 +118,7 @@ Reboot and try out nvidia-smi
 
     nvidia-smi
 
-#### OpenCV3
+### OpenCV3
 This is taken from the OpenCV3 installation page.
 
 **Install OS libraries**
@@ -244,7 +244,7 @@ This is taken from the OpenCV3 installation page.
     // Exit virtual environment with deactivate
     deactivate
 
-#### Installing Darknet
+### Installing Darknet
 
 	git clone https://github.com/pjreddie/darknet.git
 	cd darknet
@@ -265,13 +265,71 @@ Also change the 2nd line of the Makefile:
 	# Try it with:
 	# ./darknet imtest data/eagle.jpg
 
-### Training your neural networks
+### Installing Nextcloud for cloud-storage with docker-compose
 
-#### Creating training material
+We decided to use docker-compose to create a container that runs Nextcloud so that we could easily share our training material (pictures/video). 
+
+	cd
+	mkdir nextcloud
+	nano nextcloud/docker-compose.yml
+
+We need a docker-compose.yml that looks like this,
+
+	version: '3'
+
+	volumes:
+	  nextcloud:
+	  db:
+
+	services:
+	  db:
+	    image: mariadb
+	    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+	    restart: always
+	    volumes:
+	      - db:/var/lib/mysql
+	    environment:
+	      - MYSQL_ROOT_PASSWORD=password
+	      - MYSQL_PASSWORD=password
+	      - MYSQL_DATABASE=nextcloud
+	      - MYSQL_USER=username
+
+	  app:
+	    image: nextcloud
+	    ports:
+	      - 8080:80
+	    links:
+	      - db
+	    volumes:
+	      - nextcloud:/var/www/html
+	    restart: always
+
+Then just run docker-compose,
+
+	sudo docker-compose up -d
+	
+Now we have Nextcloud running on our project-machine.
+
+### Nextcloud client for easy syncing
+
+To get our material easily synced between our machines we got ourselves the [Nextcloud client](https://nextcloud.com/install/#install-clients). We downloaded the Linux AppImage, changed permissions and ran it.
+
+	chmod +x Nextcloud-2.5.1-x86_64.AppImage
+	./Nextcloud-2.5.1-x86_64.AppImage
+
+We added our Nextcloud path which to sync with.
+
+	192.0.1.2:5050 #This is just an example-address and port-numbers
+	
+This way we all have the same material at all times and synchronized.
+
+## Training your neural networks
+
+### Creating training material
 
 #### Resizing images
 
-To resize the images to a smaller size we made a script thadoes it for us, let's call it *resize.sh*:
+To resize the images to a smaller size we made a script that does it for us, let's call it *resize.sh*:
 
 	FOLDER="/path/to/images"
 
@@ -284,7 +342,7 @@ To resize the images to a smaller size we made a script thadoes it for us, let's
 Run it,
 
 	./resize.sh # Or bash resize.sh, make sure you have x-rights correct
-##### 1st Alternative: YOLO-Annotation-Tool
+#### 1st Alternative: YOLO-Annotation-Tool
 
 We went to a Pool & Snooker Bar called Corona and got some footage for our project.
 
@@ -324,7 +382,7 @@ Although the labeling works well, we wouldn't get the program to run convert.py 
 It would either create empty files or say that we didn't have some obscure directories (e.g. a directory with the name of our image).
 
 
-##### 2nd Alternative: Open Labeling
+#### 2nd Alternative: Open Labeling
 
 We also tried another labeling-tool called [Open Labeling](https://github.com/Cartucho/OpenLabeling).
 
@@ -337,7 +395,7 @@ You can install everything at once by simply running:
 
 Ran the program, shut it down and tried reopening it again and was greeted by Error messages. That was the first and last time we got it to work.
 
-##### 3rd Alternative: Yolo_mark by AlexeyAB
+#### 3rd Alternative: Yolo_mark by AlexeyAB
 
 Luckily we found an Annotation Tool called [Yolo_mark](https://github.com/AlexeyAB/Yolo_mark)  by the creator of Darknet, AlexeyAB.
 
@@ -361,14 +419,81 @@ Now run Yolo_mark again and start making your BBoxes.
 
 ![Alt Text](https://i.imgur.com/O1JsSZs.gif)
 
+## Actual training - Please note: at the time of writing, this section is still a work in progress. Things may change and put simply, be completely wrong. We are still working out the best settings to yield the best results.
+#### Also make sure have your labeling tool ready. We recommend Yolo_mark, it seems to be the best one out there by far.
+
+Let's start by copying and editing our config file:
+
+         cp darknet/cfg/yolov3.cfg ../yolo-obj.cfg
+
+Edit the line **batch** to **batch=64**.
+
+Edit the line **subdivisions** to **subdivisions=64**. If your GPU has lots of memory (over 4GB), you can lower the subdivision number to 32, 16 or even 8.
+
+Edit the line number 610 **classes** to whatever the amount of objects you want to detect is. For example, if you have 10 colors you have 10 classes.
+
+Do the same for lines 696 and 783 as well.
+
+Edit the line number 603 **filters** to whatever your amount of objects + 5 and multiply it by 3. (Objects+5)x3. For example, with 10 objects/classes, the correct filter number would be 45.
+
+Do the same for lines 689 and 776 as well.
+
+After this, create file **obj.names** in your darknet directory.
+
+Write the names of all your objects you want to detect, each in their own line.
+
+For example, if we wanted to detect colors, we would start listing: 1. Green, 2. Blue, 3. Yellow, and so on. **Make sure each object is in its own line!**
+
+Next, create file **obj.data**. In it, fill the following information:
+
+         classes= 10 //the number of your objects
+         train = train.txt //you can change these paths if your directory structure differs
+         valid = train.txt //^
+         names = obj.names
+         backup = backup/ //this is where backups of weights files are made, every 1000 lines I thin
+
+#### Marking the images
+
+Now comes the boring part. Make sure you have all your teaching material (.jpgs) ready in Yolo_mark/x64/Release/data/img/.
+
+Back up a bit and launch Yolomark in its top directory:
+
+	$ sh linux_mark.sh
+
+![](https://i.imgur.com/Nvoa8j4.jpg)
+
+It's time to start creating boxes. It's long and tedious work, but it needs to be done. You can change the Object ID from the lower slider, the upper slider can be used to browse pictures. Alternatively you can click the next picture from the top of the screen.
+
+When you are done, you should have a text file for each respective .jpg file in Yolo_mark/x64/Release/data/img/. If this is correct, give yourself a tap on the back. 
+
+Copy **obj.data**, **obj.names** and **train.txt** to your main darknet folder. (Or wherever you want, make sure you remember it.)
+
+Now, open **train.txt**, and make sure it contains the location of every image. One image per line. Yolo_mark should create the file, but if you want to change the image location, you can do it here.
+
+Great! Now before we can try training, we still need to download the premade training weights from the official site:
+
+	$ wget http://pjreddie.com/media/files/darknet53.conv.74
+
+And now, if you're feeling confident, we can finally attempt training:
+
+	$ ./darknet detector train obj.data yolo-obj.cfg darknet53.conv.74
+
+If all goes well, you should start seeing lots of numbers:
+
+![Alt Text](https://i.imgur.com/k3sXNi0.gif)
+
+Is text flashing before your eyes? Great! Do you see lots of -nan? Maybe not great, who knows at this point. This is what we are trying to find out. At the moment of writing, we  believe that some nans are tolerable, but you should start seeing less and less the longer you iterate.
+
+If you run into CUDA memory errors, try editing the **yolo-obj.cfg** file. Worst case scenario, edit subdivions and batch to 64. You can also try editing the image dimensions, however keep in mind that they **must** be divisible by 32. Make a note of the original value in case you need to revert changes.
+
+On an Nvidia GPU, you can open Nvidia X Server Settings to monitor GPU processor usage, as well as memory usage. It seems to be normal for the GPU usage % to jump around when training with Tiny cfg.
+
+Darknet will generate a weights file every 100 iterations until it reaches 1000 iterations, after which a backup will be saved after every 1000 iterations.
 
 
-#### Add weights to YOLOv3
+## Testing frame difference from video
 
-
-#### Testing frame difference from video
-
-##### Virtualenv
+### Virtualenv
 
 Either use earlier facecourse-py3 virtualenv or create a new one with suiting name.
 
@@ -385,7 +510,7 @@ Create symlink
 	cd ~/.virtualenvs/billystat/lib/python3.6/site-packages
 	ln -s /usr/local/lib/python3.6/dist-packages/cv2.cpython-36m-x86_64-linux-gnu.so cv2.so
 
-##### Frame diff from video with grayscale
+### Frame diff from video with grayscale
 
 	workon billystat
 	
@@ -393,7 +518,7 @@ Create symlink
 	
 ![Alt Text](https://i.imgur.com/QO2VE2P.gif)
 
-##### Frame diff with color
+### Frame diff with color
 
 We changed 
 
@@ -408,3 +533,17 @@ To
 Which results in
 
 ![Alt Text](https://i.imgur.com/uYViSDV.gif)
+
+This is nice but need something a bit different.
+
+## Ball Tracking
+
+We found a nice article by Adrian Rosebrock, the creator of [pyimagesearch.com](https://www.pyimagesearch.com/), where he creates a [Ball tracking-code](https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/) with Python3 using OpenCV.
+
+We decided to try it out and see for ourselves how it works out.
+
+We needed to use a different HSV value (Adrian had a greenball) for our red colored snookerballs. We tried swapping the HSV-values with a lot of different red tones and just didn't manage to get it to detect them. Might have been because of our material that was really poor quality.
+
+### Getting more material
+
+So we headed out to [Tapanilan Urheilukeskus](https://tapanilanurheilu.fi/), who let us use their Snooker-tables and space, to film better material for our project. We used a good few hours and racked up about 1300 images and 2½ hours of footage. A special thanks goes to [Tapanilan Urheilukeskus](https://tapanilanurheilu.fi/).
