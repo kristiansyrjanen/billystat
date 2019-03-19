@@ -1,0 +1,31 @@
+Perspective problems, ROI selection expects rectangle. Table is not rectangle in the current material
+I can select points on video and get coordinates for them.
+Now you can mask the image with any polygon selected with the mouse
+
+Links I used:
+
+https://stackoverflow.com/questions/30901019/extracting-polygon-given-coordinates-from-an-image-using-opencv
+
+http://answers.opencv.org/question/195043/create-contour-from-corner-points/
+
+https://stackoverflow.com/questions/14161331/creating-your-own-contour-in-opencv-using-python
+
+https://docs.opencv.org/3.2.0/d7/d1d/tutorial_hull.html
+
+https://docs.opencv.org/2.4.13.7/doc/tutorials/imgproc/shapedescriptors/hull/hull.html
+
+https://docs.opencv.org/2.4.13.7/doc/tutorials/imgproc/shapedescriptors/bounding_rects_circles/bounding_rects_circles.html
+
+https://stackoverflow.com/questions/16184267/selecting-a-region-opencv
+
+https://www.pyimagesearch.com/2015/03/09/capturing-mouse-click-events-with-python-and-opencv/
+
+https://www.learnopencv.com/convex-hull-using-opencv-in-python-and-c/
+
+https://www.learnopencv.com/how-to-select-a-bounding-box-roi-in-opencv-cpp-python/
+
+https://pythonprogramming.net/image-arithmetics-logic-python-opencv-tutorial/
+
+https://www.youtube.com/watch?v=_gfNpJmWIug
+
+

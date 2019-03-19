@@ -17,9 +17,19 @@ from collections import deque
 import time
 import cv2
 import numpy as np
+import sys
 
 import imutils
 from imutils.video import VideoStream
+
+
+testpoints = []
+
+def click(event, x, y, flags, param):
+	if event == cv2.EVENT_LBUTTONDOWN:
+		testpoints.append((x,y))
+		print(testpoints)
+
 
 #Returns the first center point of a ball that passes all the tests
 def filter_contours(input_contours, min_radius, max_radius):#, min_area, min_width, max_width, min_height, max_height):
@@ -150,8 +160,32 @@ if not args.get("video", False):
 # video given
 else:
 	vs = cv2.VideoCapture(args["video"])
+#get first valid frame, select polygon points by mouse clicks
+frame = vs.read()
+frame = vs.read()
+frame = frame[1] if args.get("video", False) else frame
+if frame is not None:
+	frame = imutils.resize(frame, width=1280)
+	cv2.imshow("test", frame)
+	cv2.setMouseCallback("test", click)
+	while True:
+		key = cv2.waitKey(1) & 0xFF
+		if key == ord("c"):
+			cv2.destroyAllWindows()
+			break
+
+	area = np.array(testpoints, dtype=np.int32)
+#masks out everything else than the polygon points you selected with the mouse
+def mask_frame(frame):
+	mask = np.zeros((frame.shape[0], frame.shape[1]))
+	cv2.fillConvexPoly(mask, area, 1)
+	mask = mask.astype(np.bool)
+	out = np.zeros_like(frame)
+	out[mask] = frame[mask]
+	return out
 
 time.sleep(2.0)
+
 
 def get_contours(frame, hsv, color_min, color_max, color_min2, color_max2):
 	# create masks for color "red" 1 + 2
@@ -189,6 +223,8 @@ while True:
 		break
 	# resize, blur, convert
 	frame = imutils.resize(frame, width=1280)
+
+	frame = mask_frame(frame)
 	#blurred = cv2.medianBlur(frame, 7)
 	blurred = cv2.GaussianBlur(frame, (3,3),0)
 	#hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV)
