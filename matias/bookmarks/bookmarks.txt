@@ -109,3 +109,50 @@ But Jetson TX2 has *only one type of memory* LPDDR4 that is shared across CPU an
                 Lines 275 to 283
               in
               [c190406](/AlexeyAB/darknet/commit/c1904068afc431ca54771e5dc20f2c588e876956)
+
+
+-------------------
+https://www.pyimagesearch.com/2018/09/19/pip-install-opencv/
+
+Install opencv with pip
+
+-------------------
+https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/
+
+Adrianin ball tracking 
+
+perjaatteessa jos ei tarvii ollenkaa mitää ääriviivoja ja itse ohjelma vaa tietää missä on pallojen keskipisteet, merkitsee pussien sijainnit
+if pallo in pussi = pallon arvoinen piste. mihin tarvitaan yoloa
+
+-------------------
+https://www.pyimagesearch.com/2018/11/12/yolo-object-detection-with-opencv/
+Adrianin yolo-ohjelma, kertoo miten tehdä oma ohjelma, vastaava darknetille.
+
+-------------------
+https://www.pyimagesearch.com/2017/11/06/deep-learning-opencvs-blobfromimage-works/
+blob selitys
+
+-------------------
+Non-max suppression algoritghm
+
+Poistaa muut mahdolliset bounding boxit samasta objektista ja valitsee vain suurimmalla varmuudella ilmoitetun.
+Applying non-maxima suppression suppresses significantly overlapping bounding boxes, keeping only the most confident ones.
+NMS also ensures that we do not have any redundant or extraneous bounding boxes.
+
+Bounding boxin keskipisteen koordinaatin saa luultavasti riviltä 112 tuplen arvoista centerX, centerY, width, height. Miten niitä hyödynnetään?
+Miten lasketaan IF pallo GOES TO pussi. pussin koordinaatin määritteleminen. 
+
+Arguably the largest limitation and drawback of the YOLO object detector is that:
+
+    It does not always handle small objects well
+    It especially does not handle objects grouped close together
+--------------------------
+
+https://www.pyimagesearch.com/2016/12/26/opencv-resolving-nonetype-errors/
+NonType errors selitys
+
+--------------------------
+https://www.youtube.com/results?search_query=opencv+roi
+ROI region of interest
+--------------------------
+
