@@ -572,4 +572,4 @@ This was third attempt to train YOLOv3 weights. This time also program started t
 
 At the same time as I tried to work with snowman-detection, we build a completely working YOLOv3 configuration, which ended up with a working weight (which is not perfect). 
 
-![Alt Text](https://imgur.com/bIW2KPW)
+![Alt Text][Imgur](https://i.imgur.com/bIW2KPW.gifv)
