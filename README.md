@@ -51,15 +51,17 @@ BillySTAT records your Snooker statistics using YOLOv3, OpenCV and NVidia Cuda.
 ***[Images of our setup](https://imgur.com/a/qfKz9Dd)***
 
 ### Things to do
+***PRIO 1***
++ Train new YOLOv3 weight!
++ Make OpenCV detection work!
 + ~~Setup server~~
 + ~~Install CUDA, OpenCV3, Darknet and YOLOv3~~
 + ~~Run basic tests~~
-+ Train YOLOv3
-+ Make it recognise only things relevant
++ Make it recognise only things relevant (Done W/ YOLO)
 + Create boundaries that when crossed, counts as a point/points depending what colored ball it is.
 + Make it count statistics
 + Create GUI for statistics
-+ Gather image material
++ ~~Gather image material~~
 
 ## Information page
 
@@ -547,3 +549,27 @@ We needed to use a different HSV value (Adrian had a greenball) for our red colo
 ### Getting more material
 
 So we headed out to [Tapanilan Urheilukeskus](https://tapanilanurheilu.fi/), who let us use their Snooker-tables and space, to film better material for our project. We used a good few hours and racked up about 1300 images and 2½ hours of footage. A special thanks goes to [Tapanilan Urheilukeskus](https://tapanilanurheilu.fi/).
+
+## Working with /matias 
+
+## /bookmarks
+
+I've collected good sources and written some of about most useful articles. 
+
+## /custom
+
+This was first attempt to train YOLOv3 weights, not successful.
+
+## /swissair
+
+This was second attempt to train YOLOv3 weights. This time it started to iterate throught files, but without results. Something went wrong during training.
+
+## /snowman
+
+This was third attempt to train YOLOv3 weights. This time also program started to successfully iterate throught files. But because it was really doing something during training, it was so slow, it took about 20 hours to do 2000 iterations with my laptop. And that is why this one also "failed".
+
+## /snooker
+
+At the same time as I tried to work with snowman-detection, we build a completely working YOLOv3 configuration, which ended up with a working weight (which is not perfect). 
+
+![Alt Text](https://imgur.com/bIW2KPW)
