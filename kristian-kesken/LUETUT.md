@@ -1,4 +1,4 @@
-# Luetut materiaalit
+# Luetut ja mahdollisesti hyödynnetyt materiaalit (Material read and/or used)
 
 https://stackoverflow.com/questions/3657078/subtract-images-by-using-opencv
 
@@ -39,3 +39,23 @@ https://github.com/llSourcell/Object_Detection_demo_LIVE
 https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/
 
 https://www.pyimagesearch.com/static/cv_dl_resource_guide.pdf
+
+https://stackoverflow.com/questions/14025192/detect-snooker-billiard-balls
+
+https://gocardless.com/blog/hacking-on-side-projects-the-pool-ball-tracker/
+
+http://kastner.ucsd.edu/ryan/wp-content/uploads/sites/5/2014/03/admin/pool-aid.pdf
+
+https://www.youtube.com/watch?v=vY0Re1e3en0
+
+https://www.youtube.com/watch?v=_3MW_o9KAWs
+
+https://dspace.lboro.ac.uk/dspace-jspui/bitstream/2134/19626/1/Thesis-2015-Oldham.pdf
+
+https://github.com/sgrieve/PoolTable
+
+https://github.com/openpool/openpool-boost-pocket
+
+https://www.uakron.edu/dotAsset/f07208ea-5399-4b8b-ac60-dd7368135598.pdf
+
+https://pranjalv.com/poolvision.pdf
