@@ -1,8 +1,8 @@
-redLower1:
-redUpper1:
+redLower1:8,100,53
+redUpper1:14,95,80
 
-redLower2:
-redUpper2:
+redLower2:7,100,56
+redUpper2:16,99,84
 
 blueLower1:
 blueUpper1:
@@ -34,11 +34,11 @@ blackUpper1:
 blackLower2:
 blackUpper2:
 
-brownLower1:
-brownUpper1:
+brownLower1:53,73,38
+brownUpper1:37,84,63
 
-brownLower2:
-brownUpper2:
+brownLower2:61,82,27
+brownUpper2:31,43,62
 
 
 ###############
