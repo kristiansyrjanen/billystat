@@ -538,25 +538,9 @@ Which results in
 
 This is nice but need something a bit different.
 
-## Ball Tracking
-
-We found a nice article by Adrian Rosebrock, the creator of [pyimagesearch.com](https://www.pyimagesearch.com/), where he creates a [Ball tracking-code](https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/) with Python3 using OpenCV.
-
-We decided to try it out and see for ourselves how it works out.
-
-We needed to use a different HSV value (Adrian had a greenball) for our red colored snookerballs. We tried swapping the HSV-values with a lot of different red tones and just didn't manage to get it to detect them. Might have been because of our material that was really poor quality.
-
 ### Getting more material
 
 So we headed out to [Tapanilan Urheilukeskus](https://tapanilanurheilu.fi/), who let us use their Snooker-tables and space, to film better material for our project. We used a good few hours and racked up about 1300 images and 2½ hours of footage. A special thanks goes to [Tapanilan Urheilukeskus](https://tapanilanurheilu.fi/).
-
-### Testing out cv2.HoughCircles
-
-We thought about trying to find round objects from our material by using cv2.HoughCircles.
-
-This actually works in a way but not consistently, below a link to the example.
-
-[cv2.HoughCircles (Imgur)](https://i.imgur.com/qSMCdpg.gif)
 
 ## Working with /matias 
 
@@ -581,3 +565,23 @@ This was third attempt to train YOLOv3 weights. This time also program started t
 At the same time as I tried to work with snowman-detection, we build a completely working YOLOv3 configuration, which ended up with a working weight (which is not perfect). 
 
 [YoloV3 with custom weights(Imgur)](https://i.imgur.com/bIW2KPW.gif)
+
+
+## OpenCV Object selection by color, cv2.HoughCircles
+
+We started with Adrian Rosebrock's ball tracking code which can be found from [here] (https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/)
+Adrian's code drew a line on the largest green object in the picture, which was a useful starting point, but it is much easier than our actual problem.
+We began by setupping OpenCV read from a video and then selecting pixels based on color and seperating these into contours.
+It is okay detecting regions but the problem is defining the colors narrowly enough to avoid the false positives. This becomes especially problematic as most pool tables are not evenly lit. It also requires one or more consecutive ranges of colors, which means that cutting out stuff in the middle of the region is annoying.
+Then we tried to use HoughCircles, which is an algorithm that tries to detect circles by edges extracted from a greyscale image.
+[cv2.HoughCircles (Imgur)](https://i.imgur.com/qSMCdpg.gif)
+Here the problem was also the balance between false positive and false negatives. Since the perspective makes the balls appear different sizes. It is hard to tell to the algorithm exactly what size sphere it is looking for and it will start to find circles from irrelevant background details.
+[cv2.HoughCircles Problems (Imgur)](https://i.imgur.com/ib5b7su.jpg)
+As a result in order to resolve the problem we think that you would need to do several passes of selection by color and then using circle detection this could get you the location of the balls by color in the image assuming you can fine tune the selection criteria well enough. Also only selecting only the play area from the image helps, but it would be likely if the camera or the lightning changes that the parameteres would need to be tuned again. There are also interesting problems with artefacts like reflections on the balls by bright lights, which show up as white circles in the circle detection and white color in the color definition.
+
+### Defining ROIs
+
+We defined the region of interest as the pool table itself. It looks like a trapezoid thanks to the perspective, so the square ROI that is as default in OpenCV leaves alot of extra room at the sides. Thus we defined a simple function where you can set the edge points of a polygon with mouse clicks. Then we filled it as a convex polygon and masked the image with it. This results in a image that is black except for the play area.
+[Example ROI (Imgur)](https://i.imgur.com/7y4xwGF.png)
+
+Currently we are thinking of the posibilities to merge OpenCV and YOLO.
