@@ -1,44 +1,44 @@
 gameAreaLower:52,218,0
-gameAreaUpper:100,100,100
+gameAreaUpper:255,255,255
 
 redLower1:0,0,0
-redUpper1:10,100,100
+redUpper1:10,255,255
 
-redLower2:7,100,56
+redLower2:7,255,56
 redUpper2:16,99,84
 
 whiteLower1:63,0,0
-whiteUpper1:100,181,100
+whiteUpper1:100,181,255
 
 whiteLower2:
 whiteUpper2:
 
-blueLower1:
-blueUpper1:
+blueLower1:95,178,27
+blueUpper1:106,255,255
 
 blueLower2:
 blueUpper2:
 
 yellowLower1:23,0,0
-yellowUpper1:33,100,100
+yellowUpper1:33,255,255
 
 yellowLower2:
 yellowUpper2:
 
-greenLower1:
-greenUpper1:
+greenLower1:75,229,0
+greenUpper1:93,255,255
 
 greenLower2:
 greenUpper2:
 
-pinkLower1:0,48,255
-pinkUpper1:0,33,85
+pinkLower1:0,0,154
+pinkUpper1:32,215,255
 
-pinkLower2:0,62,75
+pinkLower2:
 pinkUpper2:
 
-blackLower1:
-blackUpper1:
+blackLower1:61,0,0
+blackUpper1:99,255,24
 
 blackLower2:
 blackUpper2:
@@ -46,8 +46,8 @@ blackUpper2:
 brownLower1:15,0,0
 brownUpper1:57,244,205
 
-brownLower2:61,82,27
-brownUpper2:31,43,62
+brownLower2:
+brownUpper2:
 
 
 ###############
