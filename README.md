@@ -570,13 +570,18 @@ At the same time as I tried to work with snowman-detection, we build a completel
 ## OpenCV Object selection by color, cv2.HoughCircles
 
 We started with Adrian Rosebrock's ball tracking code which can be found from [here] (https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/)
+
 Adrian's code drew a line on the largest green object in the picture, which was a useful starting point, but it is much easier than our actual problem.
+
 We began by setupping OpenCV read from a video and then selecting pixels based on color and seperating these into contours.
 It is okay detecting regions but the problem is defining the colors narrowly enough to avoid the false positives. This becomes especially problematic as most pool tables are not evenly lit. It also requires one or more consecutive ranges of colors, which means that cutting out stuff in the middle of the region is annoying.
+
 Then we tried to use HoughCircles, which is an algorithm that tries to detect circles by edges extracted from a greyscale image.
 [cv2.HoughCircles (Imgur)](https://i.imgur.com/qSMCdpg.gif)
+
 Here the problem was also the balance between false positive and false negatives. Since the perspective makes the balls appear different sizes. It is hard to tell to the algorithm exactly what size sphere it is looking for and it will start to find circles from irrelevant background details.
 [cv2.HoughCircles Problems (Imgur)](https://i.imgur.com/ib5b7su.jpg)
+
 As a result in order to resolve the problem we think that you would need to do several passes of selection by color and then using circle detection this could get you the location of the balls by color in the image assuming you can fine tune the selection criteria well enough. Also only selecting only the play area from the image helps, but it would be likely if the camera or the lightning changes that the parameteres would need to be tuned again. There are also interesting problems with artefacts like reflections on the balls by bright lights, which show up as white circles in the circle detection and white color in the color definition.
 
 ### Defining ROIs
