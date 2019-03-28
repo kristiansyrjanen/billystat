@@ -550,6 +550,14 @@ We needed to use a different HSV value (Adrian had a greenball) for our red colo
 
 So we headed out to [Tapanilan Urheilukeskus](https://tapanilanurheilu.fi/), who let us use their Snooker-tables and space, to film better material for our project. We used a good few hours and racked up about 1300 images and 2½ hours of footage. A special thanks goes to [Tapanilan Urheilukeskus](https://tapanilanurheilu.fi/).
 
+### Testing out cv2.HoughCircles
+
+We thought about trying to find round objects from our material by using cv2.HoughCircles.
+
+This actually works in a way but not consistently, below a link to the example.
+
+[cv2.HoughCircles (Imgur)](https://i.imgur.com/qSMCdpg.gif)
+
 ## Working with /matias 
 
 ## /bookmarks
