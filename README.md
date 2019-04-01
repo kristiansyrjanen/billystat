@@ -569,7 +569,7 @@ At the same time as I tried to work with snowman-detection, we build a completel
 
 ## OpenCV Object selection by color, cv2.HoughCircles
 
-We started with Adrian Rosebrock's ball tracking code which can be found from [here] (https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/)
+We started with Adrian Rosebrock's ball tracking code which can be found from [here](https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/)
 
 Adrian's code drew a line on the largest green object in the picture, which was a useful starting point, but it is much easier than our actual problem.
 
