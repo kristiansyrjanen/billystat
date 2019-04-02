@@ -582,6 +582,8 @@ Then we tried to use HoughCircles, which is an algorithm that tries to detect ci
 Here the problem was also the balance between false positive and false negatives. Since the perspective makes the balls appear different sizes. It is hard to tell to the algorithm exactly what size sphere it is looking for and it will start to find circles from irrelevant background details.
 [cv2.HoughCircles Problems (Imgur)](https://i.imgur.com/ib5b7su.jpg)
 
+<a href="https://i.imgur.com/ib5b7su"><img src="https://i.imgur.com/ib5b7su.jpg" title="source: imgur.com" /></a>
+
 As a result in order to resolve the problem we think that you would need to do several passes of selection by color and then using circle detection this could get you the location of the balls by color in the image assuming you can fine tune the selection criteria well enough. Also only selecting only the play area from the image helps, but it would be likely if the camera or the lightning changes that the parameteres would need to be tuned again. There are also interesting problems with artefacts like reflections on the balls by bright lights, which show up as white circles in the circle detection and white color in the color definition.
 
 ### Defining ROIs
@@ -589,10 +591,12 @@ As a result in order to resolve the problem we think that you would need to do s
 We defined the region of interest as the pool table itself. It looks like a trapezoid thanks to the perspective, so the square ROI that is as default in OpenCV leaves alot of extra room at the sides. Thus we defined a simple function where you can set the edge points of a polygon with mouse clicks. Then we filled it as a convex polygon and masked the image with it. This results in a image that is black except for the play area.
 [Example ROI (Imgur)](https://i.imgur.com/7y4xwGF.png)
 
+<a href="https://i.imgur.com/7y4xwGF"><img src="https://i.imgur.com/7y4xwGF.png" title="source: imgur.com" /></a>
+
 Currently we are thinking of the posibilities to merge OpenCV and YOLO.
 
 
-### Clear game area without Snooker-balls with GIMP and G'MIC
+### Clear game area without Snooker-balls using GIMP and G'MIC
 
 Software used: [GIMP](https://www.gimp.org/downloads/) and [G'MIC](https://gmic.eu/download.shtml)
 
