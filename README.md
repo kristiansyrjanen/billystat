@@ -590,3 +590,23 @@ We defined the region of interest as the pool table itself. It looks like a trap
 [Example ROI (Imgur)](https://i.imgur.com/7y4xwGF.png)
 
 Currently we are thinking of the posibilities to merge OpenCV and YOLO.
+
+
+### Clear game area without Snooker-balls with GIMP and G'MIC
+
+Software used: [GIMP](https://www.gimp.org/downloads/) and [G'MIC](https://gmic.eu/download.shtml)
+
+We forgot to take a photo of the snooker-table without balls so we need to clear out the playing field using GIMP. First of all we need a bunch of photos with ballls in different spots so that we can use G'MIC to get the median of the layers.
+
+This ends up only removing the red balls as the rest of the balls are on their respective default places.
+
+<a href="https://imgur.com/8liXoGK"><img src="https://i.imgur.com/8liXoGK.png" title="source: imgur.com" /></a>
+
+Now we clear the rest of the balls using the cloning-tool and the smudge-tool to even out the green-color.
+
+<a href="https://imgur.com/RCXXVyk"><img src="https://i.imgur.com/RCXXVyk.png" title="source: imgur.com" /></a>
+
+
+
+
+
