@@ -2,16 +2,20 @@
 
 ### Tämän hetkinen tilanne:
 
-*Tehtävää: 
-Värit kuntoon, niitten testaus, jos ei toimi niin toiset arvot mukaan.
-Materiaalin trapetsointi (homographic perspective).
-FOM (Fast-moving object) testiin.*
+*Tehtävää: *
+
+*Värit kuntoon, niitten testaus, jos ei toimi niin toiset arvot mukaan.*
+
+*Materiaalin trapetsointi (homographic perspective).*
+
+*FOM (Fast-moving object) testiin.*
 
 
-*Vähimmäismaali: 
-Osumatarkkuuden laskeminen. Kun joku muu kuin valkoinen pallo liikkuu = Osuma
-Vain valkoinen pallo liikkuu = ohi kohde pallosta.*
+*Vähimmäismaali: *
 
+*Osumatarkkuuden laskeminen. Kun joku muu kuin valkoinen pallo liikkuu = Osuma*
+
+*Vain valkoinen pallo liikkuu = ohi kohde pallosta.*
 
 ## Haastikset
 
