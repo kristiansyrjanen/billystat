@@ -2,7 +2,7 @@
 
 ### Tämän hetkinen tilanne:
 
-*Tehtävää*:
+***Tehtävää***:
 
 *Värit kuntoon, niitten testaus, jos ei toimi niin toiset arvot mukaan.*
 
@@ -11,7 +11,7 @@
 *FOM (Fast-moving object) testiin.*
 
 
-*Vähimmäismaali:*
+***Vähimmäismaali:***
 
 *Osumatarkkuuden laskeminen. Kun joku muu kuin valkoinen pallo liikkuu = Osuma*
 
