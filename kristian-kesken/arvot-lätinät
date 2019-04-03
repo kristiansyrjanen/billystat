@@ -58,5 +58,12 @@ kaks kameraa??
 
 ulkoinen validointi = tapanilan urheilukeskukseen leikkisä billystat turnaus projektijäsenien kesken tai TU:n järjestäjien kesken
 
+Tehtävää: 
+Värit kuntoon, niitten testaus, jos ei toimi niin toiset arvot mukaan.
+Materiaalin trapetsointi (homographic perspective).
+FOM (Fast-moving object) testiin.
 
 
+Vähimmäismaali: 
+Osumatarkkuuden laskeminen. Kun joku muu kuin valkoinen pallo liikkuu = Osuma
+Vain valkoinen pallo liikkuu = ohi kohde pallosta.
