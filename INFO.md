@@ -1,6 +1,6 @@
 # BillySTAT Info-sivu
 
-Tämän hetkinen tilanne:
+### Tämän hetkinen tilanne:
 
 *Tehtävää: 
 Värit kuntoon, niitten testaus, jos ei toimi niin toiset arvot mukaan.
