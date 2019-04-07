@@ -58,7 +58,7 @@ def find_sportsball(image):
 	bgr = cv2.cvtColor(circled, cv2.COLOR_RGB2BGR)
 	return bgr
 	
-image =cv2.imread('testi.jpg')
+image =cv2.imread('zulul.jpg')
 result = find_sportsball(image)
 			     
-cv2.imwrite('testi2.jpg', result)
+cv2.imwrite('vivon.jpg', result)
