@@ -4,6 +4,12 @@
 
 ***Tehtävää***:
 
+*Tyhjää pöytää miinustetaan videosta jotta saataisiin ainoastaan pallot näkyviin*
+
+*Musta pallo näkyviin tämän hetkisestä versiosta*
+
+*Kasata freesit koodit johonki "pää-kansioon"*
+
 *Värit kuntoon, niitten testaus, jos ei toimi niin toiset arvot mukaan.*
 
 *Materiaalin trapetsointi (homographic perspective).*
