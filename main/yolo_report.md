@@ -38,8 +38,7 @@ Configuring darknet to train custom weights is somewhat simple. For the first sn
 
 ![alt text](https://i.imgur.com/qmUSVO3.gif)
 
-
-GIFS
+![alt text](https://i.imgur.com/HTfVndG.gif)
 
 After analyzing our work, we noticed that YOLO does detect balls that don’t move almost without a hitch. 
 But as soon they start moving, it hardly recognizes them if at all. 
@@ -62,6 +61,9 @@ Naturally this means that the training takes a lot longer too.
 As the tiny-yolo configuration and resulting weight file were quite successful we had high expectations of the proper, full configuration. 
 As previously stated, it took around 40 hours to reach 30k iterations. 
 Because of the huge time sink we were very hopeful that we are working with something special, but unfortunately it turned out to be a letdown. 
+
+![alt text](https://i.imgur.com/4GdA9ca.gif)
+
 
 GIFS 
 
