@@ -1,16 +1,3 @@
-# Adrian Rosebrock's ball tracking code variant
-# https://www.pyimagesearch.com/2015/09/14/ball-tracking-with-opencv/
-
-#Things to do 4.3.2019:
-#Define colors for each ball
-#Define ball sizes in current material aka smallest and biggest from each ball
-#Do loop for each different ball (red excluded)
-#Save coordinates in some structure
-
-#After these we can start thinking about what we do with our information and how to deal with red balls
-
-# import packages
-
 import argparse
 import time
 import math
