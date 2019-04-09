@@ -36,7 +36,7 @@ Configuring darknet to train custom weights is somewhat simple. For the first sn
 
 ![alt text](https://i.imgur.com/R5qD0qi.png)
 
-![alt text](https://i.imgur.com/UrbMtvt.gif)
+![alt text](https://i.imgur.com/qmUSVO3.gif)
 
 
 GIFS
