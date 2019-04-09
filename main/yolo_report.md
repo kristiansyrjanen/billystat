@@ -34,6 +34,9 @@ Suffice to say, the ~1500 images that we processed in a few days should be taken
 
 Configuring darknet to train custom weights is somewhat simple. For the first snooker ball detection weight we used tiny-yolo configuration, which proved to be relatively accurate and efficient. It took about 40 hours of computing to get 30k iterations. Our setup had Nvidia GTX 980 GPU and AMD Ryzen 5 1600 CPU. Your mileage may vary, depending the hardware used. Here are some samples to visualize our tiny-yolo weight performance.  
 
+![alt text](https://i.imgur.com/R5qD0qi.png)
+
+
 GIFS
 
 After analyzing our work, we noticed that YOLO does detect balls that don’t move almost without a hitch. 
