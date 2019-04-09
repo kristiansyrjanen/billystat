@@ -38,7 +38,7 @@ Configuring darknet to train custom weights is somewhat simple. For the first sn
 
 ![alt text](https://i.imgur.com/qmUSVO3.gif)
 
-![alt text](https://i.imgur.com/HTfVndG.gif)
+![alt text](https://i.imgur.com/hoohCN2.gif)
 
 After analyzing our work, we noticed that YOLO does detect balls that don’t move almost without a hitch. 
 But as soon they start moving, it hardly recognizes them if at all. 
