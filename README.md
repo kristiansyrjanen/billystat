@@ -435,8 +435,10 @@ Now run Yolo_mark again and start making your BBoxes.
 
 ![Alt Text](https://i.imgur.com/O1JsSZs.gif)
 
-## Actual training - Please note: at the time of writing, this section is still a work in progress. Things may change and put simply, be completely wrong. We are still working out the best settings to yield the best results.
-#### Also make sure have your labeling tool ready. We recommend Yolo_mark, it seems to be the best one out there by far.
+## Actual training
+***Please note: at the time of writing, this section is still a work in progress. Things may change and put simply, be completely wrong. We are still working out the best settings to yield the best results.***
+
+***Also make sure have your labeling tool ready. We recommend Yolo_mark, it seems to be the best one out there by far.***
 
 Let's start by copying and editing our config file:
 
@@ -558,23 +560,23 @@ So we headed out to [Tapanilan Urheilukeskus](https://tapanilanurheilu.fi/), who
 
 ## Working with /matias 
 
-## /bookmarks
+### /bookmarks
 
 I've collected good sources and written some of about most useful articles. 
 
-## /custom
+### /custom
 
 This was first attempt to train YOLOv3 weights, not successful.
 
-## /swissair
+### /swissair
 
 This was second attempt to train YOLOv3 weights. This time it started to iterate throught files, but without results. Something went wrong during training.
 
-## /snowman
+### /snowman
 
 This was third attempt to train YOLOv3 weights. This time also program started to successfully iterate throught files. But because it was really doing something during training, it was so slow, it took about 20 hours to do 2000 iterations with my laptop. And that is why this one also "failed".
 
-## /snooker
+### /snooker
 
 At the same time as I tried to work with snowman-detection, we build a completely working YOLOv3 configuration, which ended up with a working weight (which is not perfect). 
 
