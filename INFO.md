@@ -4,6 +4,14 @@
 
 ***Tehtävää***:
 
+*Uutta kuvaa suoraan ylhäältä, mahdollisesti kahdella kameralla*
+
+*Lasketaan osumatarkkuus palloihin, e.g. vain valkoinen liikkuu = ohi*
+
+*Muutetaan verkan-maskin väri mustasta esim. vaalean siniseksi*
+
+*Materiaalin trapetsointi (homographic perspective).*
+
 *Tyhjää pöytää miinustetaan videosta jotta saataisiin ainoastaan pallot näkyviin*
 
 *Musta pallo näkyviin tämän hetkisestä versiosta*
@@ -12,7 +20,6 @@
 
 *Värit kuntoon, niitten testaus, jos ei toimi niin toiset arvot mukaan.*
 
-*Materiaalin trapetsointi (homographic perspective).*
 
 *FOM (Fast-moving object) testiin.*
 
