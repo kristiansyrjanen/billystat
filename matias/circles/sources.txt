@@ -1,0 +1,17 @@
+android opencv findcontours() unsupported format exception
+https://stackoverflow.com/questions/41456879/android-opencv-findcontours-unsupported-format-exception#44611008
+
+Python cv2.findContours() Examples 
+https://www.programcreek.com/python/example/70440/cv2.findContours
+
+findContours
+https://www.pyimagesearch.com/2014/04/21/building-pokedex-python-finding-game-boy-screen-step-4-6/
+
+Python cv2.minEnclosingCircle() Examples 
+https://www.programcreek.com/python/example/77056/cv2.minEnclosingCircle
+
+ Python cv2.contourArea() Examples 
+https://www.programcreek.com/python/example/86843/cv2.contourArea
+
+findContours tarvitsee harmaita kuvia
+
