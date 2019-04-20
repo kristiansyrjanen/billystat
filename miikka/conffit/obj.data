@@ -1,5 +1,0 @@
-classes= 8
-train  = train.txt
-valid  = train.txt
-names = obj.names
-backup = backup/

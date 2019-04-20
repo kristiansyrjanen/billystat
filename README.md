@@ -65,7 +65,7 @@ BillySTAT records your Snooker statistics using YOLOv3, OpenCV and NVidia Cuda.
 
 ### Things to do
 ***PRIO 1***
-+ Train new YOLOv3 weight!
++ ~~Train new YOLOv3 weight!~~
 + Make OpenCV detection work!
 + ~~Setup server~~
 + ~~Install CUDA, OpenCV3, Darknet and YOLOv3~~
