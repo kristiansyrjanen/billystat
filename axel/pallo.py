@@ -28,6 +28,67 @@ lineType               = 2
 
 testpoints = []
 
+def distance(first, second):
+    return np.linalg.norm(first-second)
+
+def others(first_list, second_list, threshold=3):
+
+    #Jos uusi pallo ilmestyy, oletetaan että jotain likkuui, voi olla väärä
+    if len(first_list) == 0:
+        if len(second_list) != 0:
+            return True
+        else:
+            return False
+
+    for first in first_list:
+        distances = np.zeros(len(second_list))
+        for index, second in enumerate(second_list):
+            distances[index] = distance(first, second)
+            #May need to use colors?
+        min_distance = np.min(distances)
+        if min_distance > threshold:
+            return True
+
+    return False
+
+
+white_window = deque([False, False, False], maxlen=3)
+other_window = deque([False, False, False], maxlen=3)
+
+shot_in_progress = False
+hit = False
+
+def track_hits(white_moved, others_moved):
+
+    global shot_in_progress
+    global white_window
+    global other_window
+    global hit
+
+    white_window.append(white_moved)
+    other_window.append(others_moved)
+
+    white_true = white_window.count(True)
+    other_true = other_window.count(True)
+
+    if (white_true == 3) and not(shot_in_progress):
+        shot_in_progress = True
+        hit = False
+        print("Starting shot.")
+
+    if (other_true == 3) and shot_in_progress:
+        hit = True
+
+    if (white_true==0) and shot_in_progress:
+        shot_in_progress = False
+        if not hit:
+            print("Virhelyönti")
+        else:
+            print("Onnistui")
+        print("End shot.")
+
+
+
 #Ottaa controurin määrittelevät pikselit ja ottaa keskiarvon (huom merkityksellinen vain hsv väriavaruudessa)
 def mean_color(frame, contour):
     x = contour[:, 0, 0]
@@ -51,6 +112,8 @@ def colour_filter(color, hsv_low=np.array([30,10,230]), hsv_up=np.array([50,70,2
 def get_contours(hsv, target, mask):
     cnts = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     cnts = imutils.grab_contours(cnts)
+    white_location = []
+    other_locations = []
     # Valikoidaan aluesita ne mitä ajatelaan palloiksi, ja lasketaan keskimääräinen väri. Plotataan kuvaan.
     for contour in cnts:
         if filter_contours(contour):
@@ -62,12 +125,14 @@ def get_contours(hsv, target, mask):
                 mcolor = mean_color(hsv, contour)
                 if colour_filter(mcolor):
                     cv2.putText(target,"White %s" % mcolor.astype(np.int), (cX, cY), font, 0.5, fontColor, lineType=lineType)
+                    white_location = np.array([cX,cY])
                 else:
                     cv2.putText(target,"Other %s" % mcolor.astype(np.int), (cX, cY), font, 0.5, fontColor, lineType=lineType)
+                    other_locations.append(np.array([cX,cY]))
             except:
                 pass
 
-    return target
+    return target, white_location, other_locations
 
 #Sanoo onko contouri meistä tarpeeksi pallomainen
 def filter_contours(contour, min_radius=min_radius, max_radius=max_radius, area_deviance=area_deviance):#, min_area, min_width, max_width, min_height, max_height):
@@ -152,6 +217,8 @@ def mask_frame(frame):
 
 time.sleep(0.5)
 
+previous = False
+
 while True:
 
     frame = vs.read()
@@ -173,7 +240,32 @@ while True:
 
     show = cv2.cvtColor(selected, cv2.COLOR_HSV2BGR)
 
-    show = get_contours(hsv, show, mask)
+    show, wl, ol = get_contours(hsv, show, mask)
+
+    if previous and (len(wl) != 0):
+
+        white_distance = distance(wl, prev_wl)
+        others_moved = others(ol, prev_ol)
+
+        prev_wl = wl.copy()
+        prev_ol = ol.copy()
+
+        if white_distance > 1.5:
+            white_moved = True
+        else:
+            white_moved = False
+
+        #print("White moved:",white_moved)
+        #print("Others moved:", others_moved)
+        track_hits(white_moved, others_moved)
+
+    else:
+        if len(wl) != 0:
+            prev_wl = wl.copy()
+            prev_ol = ol.copy()
+            previous = True
+
+    
 
 # show the frame to our screen
     cv2.imshow("SnookerBall Tracking Frame",show)
