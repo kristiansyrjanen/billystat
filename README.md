@@ -625,6 +625,20 @@ Now we clear the rest of the balls using the cloning-tool and the smudge-tool to
 
 <a href="https://imgur.com/RCXXVyk"><img src="https://i.imgur.com/RCXXVyk.png" title="source: imgur.com" /></a>
 
+### 2D Perspective warping
+
+We either needed to get better material (from straight up-top) or to warp the perspective of our videos.
+
+***Spoiler: We went a filmed new material but before that we tried out how it would turn out***
+
+To warp the perspective of our material we need to use OpenCV's cv2.getPerspectiveTransform and cv2.warpPerspective function.
+
+For this we need to pinpoint 4 coordinates of our image/video from where it should warp the perspective from, and 4 coordinates to which size it should warp it to.
+
+You can definately see that the perspective is warped, as you look at the pockets they seem really odd looking.
+
+<a href="https://i.imgur.com/g0KDgda.jpg"><img src="https://i.imgur.com/g0KDgda.jpg" title="source: imgur.com" /></a>
+
 
 ## Creating a GUI for BillySTAT
 
