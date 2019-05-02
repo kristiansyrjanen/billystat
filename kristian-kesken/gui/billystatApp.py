@@ -427,8 +427,5 @@ else:
 
 cv2.destroyAllWindows()"""
 
-#root.geometry("300x250+300+300")
-#root.mainloop()
-
 # Create a window and pass it to the Application object
 App(tki.Tk(), "BillySTAT GUI")
