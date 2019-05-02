@@ -626,6 +626,41 @@ Now we clear the rest of the balls using the cloning-tool and the smudge-tool to
 <a href="https://imgur.com/RCXXVyk"><img src="https://i.imgur.com/RCXXVyk.png" title="source: imgur.com" /></a>
 
 
+## Creating a GUI for BillySTAT
 
+### Tkinter
 
+Tkinter is a GuiProgramming toolkit for python and according to the Python wiki, it is also the [most commonly used](https://wiki.python.org/moin/TkInter).
+There are many others but we decided to use it as we had heard of it before during our course.
 
+### Mockup
+
+A good way to visualize what you want for your GUI is to create a mockup, here's our version we'd like to create.
+
+<a href="https://i.imgur.com/mvjoInD.jpg"><img src="https://i.imgur.com/mvjoInD.jpg" title="source: imgur.com" /></a>
+
+### Creating the GUI
+
+We'd never done anything related to python nor any GUI-developing so all of this is new to us. So naturally we need to read tkinter wiki's and do a bunch of tutorials to get a hang of it.
+
+Resources used:
+
+https://www.youtube.com/watch?v=RJB1Ek2Ko_Y
+
+https://www.pyimagesearch.com/2016/05/30/displaying-a-video-feed-with-opencv-and-tkinter/
+
+https://solarianprogrammer.com/2018/04/21/python-opencv-show-video-tkinter-window/
+
+https://www.hackanons.com/2018/08/python-3-project-gui-text-editor-using.html
+
+https://docs.python.org/2/library/tkinter.html
+
+http://effbot.org/tkinterbook/place.htm
+
+After testing numerus different ways of creating the GUI we finally made something that resembles our mockup GUI.
+
+<a href="https://i.imgur.com/OSKTQa6.png"><img src="https://i.imgur.com/OSKTQa6.png" title="source: imgur.com" /></a>
+
+![Gif of the GUI](https://giant.gfycat.com/WelcomeBlackAmericanbobtail.webm)
+
+At this point we still need to attach all of the functionalities to the GUI. At the moment all of the filedialog prompts are done.
