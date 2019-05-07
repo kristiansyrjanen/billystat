@@ -678,3 +678,4 @@ After testing numerus different ways of creating the GUI we finally made somethi
 [Gif of the GUI](https://giant.gfycat.com/WelcomeBlackAmericanbobtail.webm)
 
 At this point we still need to attach all of the functionalities to the GUI. At the moment all of the filedialog prompts are done.
+[test video](https://imgur.com/a/29O8Vdw)
