@@ -675,6 +675,6 @@ After testing numerus different ways of creating the GUI we finally made somethi
 
 <a href="https://i.imgur.com/OSKTQa6.png"><img src="https://i.imgur.com/OSKTQa6.png" title="source: imgur.com" /></a>
 
-![Gif of the GUI](https://giant.gfycat.com/WelcomeBlackAmericanbobtail.webm)
+[Gif of the GUI](https://giant.gfycat.com/WelcomeBlackAmericanbobtail.webm)
 
 At this point we still need to attach all of the functionalities to the GUI. At the moment all of the filedialog prompts are done.
