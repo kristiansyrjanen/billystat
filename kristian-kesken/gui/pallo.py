@@ -18,7 +18,7 @@ min_radius = 7
 max_radius = 30
 
 # Paljonko saa poiketa ympäröivästä ellipsistä, että hyväksytään palloksi.
-area_deviance = 0.30
+area_deviance = 0.40
 
 # Fonttimääritelyjä: https://stackoverflow.com/a/16615935
 font = cv2.FONT_HERSHEY_SIMPLEX
@@ -71,9 +71,9 @@ other_window = deque([False, False, False], maxlen=3)
 
 shot_in_progress = False
 hit = False
-huti =0
-osuma = 0
-yhteensa = 0
+huti = 0.0
+osuma = 0.0
+yhteensa = 0.0
 osumat = 0.0
 
 def track_hits(white_moved, others_moved, white_location):
@@ -186,6 +186,7 @@ def get_contours(hsv, target, mask):
 
     return target, white_location, other_locations
 
+fraction = 0.0
 
 # Sanoo onko contouri meistä tarpeeksi pallomainen
 def filter_contours(contour, min_radius=min_radius, max_radius=max_radius,
@@ -198,18 +199,20 @@ def filter_contours(contour, min_radius=min_radius, max_radius=max_radius,
 
     if radius > max_radius:
         return False
+    global fraction
 
-    # Ellipsiä ei voi laskea alle viidestä pikselistä, tuskin on myös pallo jos niin pieni.
-    if contour.shape[0] < 5:
+    #Ellipsiä ei voi laskea alle viidestä pikselistä, tuskin on myös pallo jos niin pieni.
+    if contour.shape[0] < 5.0:
         return False
 
     (x, y), (MA, ma), angle = cv2.fitEllipse(contour)
 
     area = cv2.contourArea(contour)
     ellipse_area = (math.pi * MA * ma) / 4.0
-
-    fraction = ellipse_area / area
-
+    try:
+        fraction = ellipse_area / area
+    except ZeroDivisionError:
+        pass 
     if fraction > (1.0 + area_deviance):
         return False
 
@@ -326,7 +329,7 @@ def main(video=True, name=None):
                 previous = True
 
         # show the frame to our screen
-        cv2.imshow("SnookerBall Tracking Frame", show)
+        cv2.imshow("SnookerBall Tracking Frame", frame)
         key = cv2.waitKey(1) & 0xFF
         if key == ord("q"):
             break
