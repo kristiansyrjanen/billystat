@@ -1,3 +1,9 @@
+Get statistics for your Snooker games with BillySTAT.
+
+<a href="https://i.imgur.com/3Uf9RY9.png"><img src="https://i.imgur.com/3Uf9RY9.png" title="source: imgur.com" /></a>
+
+<a href="https://i.imgur.com/OSKTQa6.png"><img src="https://i.imgur.com/OSKTQa6.png" title="source: imgur.com" /></a>
+
 
 
 <!-- toc -->
@@ -66,14 +72,14 @@ BillySTAT records your Snooker statistics using YOLOv3, OpenCV and NVidia Cuda.
 ### Things to do
 ***PRIO 1***
 + ~~Train new YOLOv3 weight!~~
-+ Make OpenCV detection work!
++ ~~Make OpenCV detection work!~~
 + ~~Setup server~~
 + ~~Install CUDA, OpenCV3, Darknet and YOLOv3~~
 + ~~Run basic tests~~
-+ Make it recognise only things relevant (Done W/ YOLO)
-+ Create boundaries that when crossed, counts as a point/points depending what colored ball it is.
-+ Make it count statistics
-+ Create GUI for statistics
++ ~~Make it recognise only things relevant~~
++ Create boundaries that when crossed, counts as a point/points depending what colored ball it is.[Undertesting]
++ ~~Make it count statistics~~
++ ~~Create GUI for statistics~~
 + ~~Gather image material~~
 
 ## Information page
