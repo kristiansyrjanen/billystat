@@ -128,7 +128,7 @@ def track_hits(white_moved, others_moved, white_location):
 
         osumat = (osuma/yhteensa)*100.0
         print(osumat)
-        #label.config(text=osumat[osumat])
+
 
 # Ottaa controurin määrittelevät pikselit ja ottaa keskiarvon (huom merkityksellinen vain hsv väriavaruudessa)
 def mean_color(frame, contour):
@@ -212,7 +212,7 @@ def filter_contours(contour, min_radius=min_radius, max_radius=max_radius,
     try:
         fraction = ellipse_area / area
     except ZeroDivisionError:
-        pass 
+        pass
     if fraction > (1.0 + area_deviance):
         return False
 
@@ -328,6 +328,16 @@ def main(video=True, name=None):
                 prev_ol = ol.copy()
                 previous = True
 
+        info = [
+            ("Osuma", osuma),
+            ("Ohilyoenti", huti),
+            ("Osumisprosentti", osumat),
+        ]
+
+        for (i, (k, v)) in enumerate(info):
+            text = "{}: {}".format(k, v)
+            cv2.putText(frame, text, (10, 75 - ((i * 20) + 20)),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
         # show the frame to our screen
         cv2.imshow("SnookerBall Tracking Frame", frame)
         key = cv2.waitKey(1) & 0xFF
