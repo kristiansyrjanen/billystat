@@ -616,6 +616,16 @@ We defined the region of interest as the pool table itself. It looks like a trap
 
 Currently we are thinking of the posibilities to merge OpenCV and YOLO.
 
+### Working on the Pallo.py
+
+To separate the balls from the background and other objects we first removed everything that is colored like the table this leaves us with several contours which are balls, groups of balls, nets at the edges of the table and players. To figure which one of these are balls we fit a bounding ellipse on each area of sufficient size. Because there is aberration from the lens and perspective, we allow the area to deviate from perfect sphere somewhat, so all contours that are within a threshold of perfect ellipse are counted as balls. The downside of this that we don’t recognize group of balls as separate balls.
+
+Once we have our balls, we calculate their center and their mean color in hsv-space. We then make a division between white ball and others. In order to track how successful how hit is we use simple logic. When the white ball has moved several frames, we consider that the shot has started, if other balls show consistent moving during the shot, we count it as successful, otherwise not. The shot ends when white ball has stayed still during several frames. This is necessary because areas are not completely still even if the object has not moved. Then we keep statistic of successful and unsuccessful hits and show them to the user from our terminal, but we are making a Hud for this.
+
+We can click the holes to mark them, if this is done, we will also attempt to see if any balls vanished near these locations. If they did then we count this as a ball going into the hole. We made some jerry-rigged contraption to catch some corner cases in calculating areas and ellipses because the nets are sometimes within the tolerance we have set, so they appear as balls vanishing and reappearing.
+
+Currently our program crashes when there are no other balls left, we should try to figure something out for this problem, but its not critical at the moment.
+
 
 ### Clear game area without Snooker-balls using GIMP and G'MIC
 
