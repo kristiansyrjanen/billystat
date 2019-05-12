@@ -667,10 +667,17 @@ To warp the perspective of our material we need to use OpenCV's cv2.getPerspecti
 
 For this we need to pinpoint 4 coordinates of our image/video from where it should warp the perspective from, and 4 coordinates to which size it should warp it to.
 
-You can definately see that the perspective is warped, as you look at the pockets they seem really odd looking.
+You can definitely see that the perspective is warped, as you look at the pockets they seem really odd looking.
 
-<a href="https://i.imgur.com/g0KDgda.jpg"><img src="https://i.imgur.com/g0KDgda.jpg" title="source: imgur.com" /></a>
+<a href="https://i.imgur.com/g0KDgda.jpg"><img src="https://i.imgur.com/g0KDgda.jpg" title="2D Perspective-warping" /></a>
 
+The perspective warping result and the rest of our problems regarding the recognition of the snooker balls forced us to find a better angle to shoot our material from, which was the birdview. All of this was possible by lifting the lamps 1 meter higher than they usually were and strapping our Go Pro to a self-made camera-holder.
+
+<a href="https://i.imgur.com/5unPZ51.jpg"><img src="https://i.imgur.com/5unPZ51.jpg" title="sMacGyver-apparatus" /></a>
+
+This MacGyver-apparatus was made with a zigzag rule and 3 general-clamps, which totaled to cost 8,47€.
+
+By filming from this angle and height we managed to get material in which we had full view of our snooker-table and no balls were being shadowed entirely by another ball or the walls.
 
 ## Creating a GUI for BillySTAT
 
@@ -683,11 +690,11 @@ There are many others but we decided to use it as we had heard of it before duri
 
 A good way to visualize what you want for your GUI is to create a mockup, here's our version we'd like to create.
 
-<a href="https://i.imgur.com/mvjoInD.jpg"><img src="https://i.imgur.com/mvjoInD.jpg" title="source: imgur.com" /></a>
+<a href="https://i.imgur.com/mvjoInD.jpg"><img src="https://i.imgur.com/mvjoInD.jpg" title="BillySTAT GUI mockup" /></a>
 
 ### Creating the GUI
 
-We'd never done anything related to python nor any GUI-developing so all of this is new to us. So naturally we need to read tkinter wiki's and do a bunch of tutorials to get a hang of it.
+We'd never done anything related to python nor any GUI-developing so all of this is new to us. So naturally we need to read tkinter wiki's and did a bunch of tutorials to get a hang of it.
 
 Resources used:
 
@@ -705,14 +712,19 @@ http://effbot.org/tkinterbook/place.htm
 
 After testing numerus different ways of creating the GUI we finally made something that resembles our mockup GUI.
 
-<a href="https://i.imgur.com/OSKTQa6.png"><img src="https://i.imgur.com/OSKTQa6.png" title="source: imgur.com" /></a>
+<a href="https://i.imgur.com/OSKTQa6.png"><img src="https://i.imgur.com/OSKTQa6.png" title="First GUI" /></a>
 
 [Gif of the GUI](https://giant.gfycat.com/WelcomeBlackAmericanbobtail.webm)
 
 At this point we still need to attach all of the functionalities to the GUI. At the moment all of the filedialog prompts are done.
-[test video](https://imgur.com/a/29O8Vdw)
+
+![Test video](https://imgur.com/a/29O8Vdw)
+
+Unfortunately due to our lack of python and tkinter knowledge we didn't know how to actually connect everything, so we ended up using the GUI to running pallo.py and for source selection.
 
 ### Displaying statistics on screen
+
+Because of not being able to add every functionality in to the GUI we went ahead and wrapped our statistics in the OpenCV output.
 
 To display our variables on screen we used OpenCV:s putText module.
 
