@@ -1,9 +1,18 @@
 Get statistics for your Snooker games with BillySTAT.
 
+<a href="hhttps://i.imgur.com/hZDxVAB.png"><img src="https://i.imgur.com/hZDxVAB.png" title="HUD for BillySTAT's" /></a>
+
 <a href="https://i.imgur.com/3Uf9RY9.png"><img src="https://i.imgur.com/3Uf9RY9.png" title="source: imgur.com" /></a>
 
 <a href="https://i.imgur.com/OSKTQa6.png"><img src="https://i.imgur.com/OSKTQa6.png" title="source: imgur.com" /></a>
 
+**Usage:**
+
+	python billystatApp.py
+
+Click testpoints for mask and press C, then mark the pockets and press C again. It should start running.
+
+Simple as that.
 
 
 <!-- toc -->
