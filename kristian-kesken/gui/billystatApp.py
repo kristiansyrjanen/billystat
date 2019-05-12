@@ -27,26 +27,16 @@ class App(tki.Frame):
     def __init__(self, window, window_title, video_source='H:/moniala/gopro1.mp4'):
         self.window = window
         self.window.title(window_title)
-        self.window.geometry("520x220+300+300")
+        self.window.geometry("280x220+300+300")
         self.video_source = video_source
         # self.vs = MyVideoCapture(self.video_source)
 
-        self.canvas = tki.Canvas(window)
-        self.canvas.pack(expand=tki.YES, fill=tki.BOTH)
-
-        self.label = tki.Label(window, bg="gold", fg="blue")
-        self.label.place(relx=1, x=-200, y=25, anchor=tki.NE)
-
-        self.label.configure(text=pallo.osumat, bg="gold", fg="blue")
-        self.label.after(1000)
-
-        # insert label.config(text=listName[-1]) into code to display data
 
         # ******** GUI BUTTONS *********
 
         # START BUTTON
         self.startBtn = tki.Button(window, text="Start game", command=self.go_pallo)
-        self.startBtn.place(relx=1, x=-385, y=25, anchor=tki.NE)
+        self.startBtn.pack(fill=tki.X, pady=11, padx=11)
 
         # if pressed and file_selected run pallo.py
         # if file_selected = None
@@ -54,13 +44,13 @@ class App(tki.Frame):
 
         # STOP BUTTON
         self.stopBtn = tki.Button(window, text="Stop game")  # , command=self.stopGame)
-        self.stopBtn.place(relx=1, x=-385, y=75, anchor=tki.NE)
+        self.stopBtn.pack(fill=tki.X, pady=11, padx=11)
 
         # if pressed kill pallo.py destroyAllWindows
 
         # SWITCH PLAYERS BUTTON
         self.switchBtn = tki.Button(window, text="Switch player")  # , command=self.switchPlayer)
-        self.switchBtn.place(relx=1, x=-378, y=125, anchor=tki.NE)
+        self.switchBtn.pack(fill=tki.X, pady=11, padx=11)
 
         # if pressed change player
         # if player1 currently_selected = switch_to_player2
@@ -68,7 +58,7 @@ class App(tki.Frame):
 
         # SAVE STATISTICS BUTTON
         self.saveBtn = tki.Button(window, text="Save game statistics", command=self.save_statistics)
-        self.saveBtn.place(relx=1, x=-360, y=175, anchor=tki.NE)
+        self.saveBtn.pack(fill=tki.X, pady=11, padx=11)
 
         # After it is called once, the update method will be automatically called every delay milliseconds
         self.delay = 15
@@ -107,13 +97,6 @@ class App(tki.Frame):
         pallo.main(video=True, name=self.vs_answer)
 
     def update(self):
-        # ret, frame = self.vs.get_frame()
-        # frame = imutils.resize(frame, width=720)
-
-        # if ret:
-        #    self.image = ImageTk.PhotoImage(image=Image.fromarray(frame))
-        #    self.canvas.create_image(0, 0, image=self.image, anchor=tki.NW)
-
         self.window.after(self.delay, self.update)
 
     def select_source(self):
@@ -160,31 +143,6 @@ class App(tki.Frame):
         else:
             write_to_file(file_name)
         return "break"
-
-
-# view source
-# if not given use webcam
-"""class MyVideoCapture:
-    def __init__(self, video_source='H:/moniala/gopro1.mp4'):
-        if not False:
-            self.vs = cv2.VideoCapture(video_source)
-        else:
-            self.vs = cv2.VideoCapture(self.select_source)
-
-        self.width = self.vs.get(cv2.CAP_PROP_FRAME_WIDTH)
-        self.height = self.vs.get(cv2.CAP_PROP_FRAME_HEIGHT)
-
-    def get_frame(self):
-        if self.vs.isOpened():
-            ret, frame = self.vs.read()
-            if ret:
-                return(ret,cv2.cvtColor(frame, cv2.COLOR_BGR2RGB))
-            else:
-                return(ret, None)
-
-    def __del__(self):
-        if self.vs.isOpened():
-            self.vs.release()"""
 
 # Create a window and pass it to the Application object
 App(tki.Tk(), "BillySTAT GUI")
