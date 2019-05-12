@@ -695,3 +695,26 @@ After testing numerus different ways of creating the GUI we finally made somethi
 
 At this point we still need to attach all of the functionalities to the GUI. At the moment all of the filedialog prompts are done.
 [test video](https://imgur.com/a/29O8Vdw)
+
+### Displaying statistics on screen
+
+To display our variables on screen we used OpenCV:s putText module.
+
+We found [Adrian's People Counter](https://www.pyimagesearch.com/2018/08/13/opencv-people-counter/) really helpful, as he uses cv2.putText on line 245 of his People Counter code.
+
+So we added our own putText,
+
+	info = [
+            ("Osuma", osuma),
+            ("Ohilyoenti", huti),
+            ("Osumisprosentti", osumat),
+        ]
+
+        for (i, (k, v)) in enumerate(info):
+            text = "{}: {}".format(k, v)
+            cv2.putText(frame, text, (10, 75 - ((i * 20) + 20)),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
+
+This is how it looks like,
+
+<a href="hhttps://i.imgur.com/hZDxVAB.png"><img src="https://i.imgur.com/hZDxVAB.png" title="HUD for BillySTAT's" /></a>
