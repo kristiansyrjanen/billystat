@@ -6,11 +6,18 @@ Get statistics for your Snooker games with BillySTAT.
 
 <a href="https://i.imgur.com/OSKTQa6.png"><img src="https://i.imgur.com/OSKTQa6.png" title="source: imgur.com" /></a>
 
-**Usage:**
+**How to use Billystat:**
+
+In folder billystat/kristian-kesken/gui/ run command
+
 
 	python billystatApp.py
 
-Click testpoints for mask and press C, then mark the pockets and press C again. It should start running.
+Choose video to analyse: File->Open and choose the video
+
+Next
+
+Click outermost points of the snooker table on the displayed video for mask and press C. Then mark the pockets by clicking on them and press C again. It should start running.
 
 Simple as that.
 
