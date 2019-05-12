@@ -13,7 +13,7 @@ In folder billystat/kristian-kesken/gui/ run command
 
 	python billystatApp.py
 
-Choose video to analyse: File->Open and choose the video
+Choose video to analyse: File->Open and choose the video and press Start game
 
 Next
 
