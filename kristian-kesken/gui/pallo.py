@@ -284,6 +284,18 @@ def main(video=True, name=None):
         if frame is None:
             break
 
+        results=open('results.txt', 'w')
+#        results.write('Osumis%:', osumat, "\n", 'Osumat:', osuma, "\n", 'Ohilyönti:', huti)
+        results.write("Osumaprosentti")
+        results.write(str(osumat))
+        results.write("\n")
+        results.write("Osumien määrä")
+        results.write(str(osuma))
+        results.write("\n")
+        results.write("Ohilyöntien määrä")
+        results.write(str(huti))
+	
+
         frame = imutils.resize(frame, width=1280)
 
         frame, framing_mask = mask_frame(frame)
