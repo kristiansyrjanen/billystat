@@ -573,7 +573,7 @@ Which results in
 
 ![Alt Text](https://i.imgur.com/uYViSDV.gif)
 
-This is nice but need something a bit different.
+This is nice but we need something a bit different.
 
 ### Getting more material
 
@@ -587,19 +587,19 @@ I've collected good sources and written some of about most useful articles.
 
 ### /custom
 
-This was first attempt to train YOLOv3 weights, not successful.
+This was the first attempt to train YOLOv3 weights, not successful.
 
 ### /swissair
 
-This was second attempt to train YOLOv3 weights. This time it started to iterate throught files, but without results. Something went wrong during training.
+This was the second attempt to train YOLOv3 weights. This time it started to iterate throught files, but without results. Something went wrong during training.
 
 ### /snowman
 
-This was third attempt to train YOLOv3 weights. This time also program started to successfully iterate throught files. But because it was really doing something during training, it was so slow, it took about 20 hours to do 2000 iterations with my laptop. And that is why this one also "failed".
+This was the third attempt to train YOLOv3 weights. This time also the program started to successfully iterate throught files. But because it was really doing something during training, it was so slow, it took about 20 hours to do 2000 iterations with my laptop. And that is why this one also "failed".
 
 ### /snooker
 
-At the same time as I tried to work with snowman-detection, we build a completely working YOLOv3 configuration, which ended up with a working weight (which is not perfect). 
+At the same time as I tried to work with snowman-detection, we built a completely working YOLOv3 configuration, which ended up with a working weight (which is not perfect). 
 
 [YoloV3 with custom weights(Imgur)](https://i.imgur.com/bIW2KPW.gif)
 
@@ -610,8 +610,8 @@ We started with Adrian Rosebrock's ball tracking code which can be found from [h
 
 Adrian's code drew a line on the largest green object in the picture, which was a useful starting point, but it is much easier than our actual problem.
 
-We began by setupping OpenCV read from a video and then selecting pixels based on color and seperating these into contours.
-It is okay detecting regions but the problem is defining the colors narrowly enough to avoid the false positives. This becomes especially problematic as most pool tables are not evenly lit. It also requires one or more consecutive ranges of colors, which means that cutting out stuff in the middle of the region is annoying.
+We began by setting up OpenCV to read from a video and then selecting pixels based on color and seperating these into contours.
+It is good in detecting regions but the problem is defining the colors narrowly enough to avoid the false positives. This becomes especially problematic as most pool tables are not evenly lit. It also requires one or more consecutive ranges of colors, which means that cutting out stuff in the middle of the region is annoying.
 
 Then we tried to use HoughCircles, which is an algorithm that tries to detect circles by edges extracted from a greyscale image.
 [cv2.HoughCircles (Imgur)](https://i.imgur.com/qSMCdpg.gif)
@@ -636,18 +636,28 @@ Currently we are thinking of the posibilities to merge OpenCV and YOLO.
 
 To separate the balls from the background and other objects we first removed everything that is colored like the table this leaves us with several contours which are balls, groups of balls, nets at the edges of the table and players. To figure which one of these are balls we fit a bounding ellipse on each area of sufficient size. Because there is aberration from the lens and perspective, we allow the area to deviate from perfect sphere somewhat, so all contours that are within a threshold of perfect ellipse are counted as balls. The downside of this that we don’t recognize group of balls as separate balls.
 
-Once we have our balls, we calculate their center and their mean color in hsv-space. We then make a division between white ball and others. In order to track how successful how hit is we use simple logic. When the white ball has moved several frames, we consider that the shot has started, if other balls show consistent moving during the shot, we count it as successful, otherwise not. The shot ends when white ball has stayed still during several frames. This is necessary because areas are not completely still even if the object has not moved. Then we keep statistic of successful and unsuccessful hits and show them to the user from our terminal, but we are making a Hud for this.
+Once we have our balls, we calculate their center and their mean color in hsv-space. We then make a division between white ball and others. In order to track how successful the shot is we use simple logic. When the white ball has moved several frames, we consider that the shot has started, if other balls show consistent moving during the shot, we count it as successful, otherwise not. The shot ends when white ball has stayed still during several frames. This is necessary because areas are not completely still even if the object has not moved. Then we keep statistic of successful and unsuccessful hits and show them to the user from our terminal, but we are making a HUD for this.
+
+<a href="https://i.imgur.com/3Uf9RY9.png"><img src="https://i.imgur.com/3Uf9RY9.png" title="source: imgur.com" /></a>
 
 We can click the holes to mark them, if this is done, we will also attempt to see if any balls vanished near these locations. If they did then we count this as a ball going into the hole. We made some jerry-rigged contraption to catch some corner cases in calculating areas and ellipses because the nets are sometimes within the tolerance we have set, so they appear as balls vanishing and reappearing.
 
-Currently our program crashes when there are no other balls left, we should try to figure something out for this problem, but its not critical at the moment.
+Currently our program crashes when there are no other balls left, we should try to figure something out for this problem, but its not critical at the moment. Also we aren't able to track the black ball as the default color for the mask is black, so we are trying to figure out a way to change the mask color to e.g. purple.
 
 
-### Clear game area without Snooker-balls using GIMP and G'MIC
+## Possible solutions to detecting balls from an angled view
+
+We had problems detecting the balls from our table because of the angled view. The balls were being shadowed by other balls and the walls of the table, which had a huge impact in recognition. We scrambled through ideas that would help us get better results.
+
+### Subtracting/Comparing frames
+
+We thought about using an empty image of our snooker table to subtract from our live footage to leave only the relevant objects on the table. For this we needed an image of an empty snooker-table.
+
+#### Empty game area without Snooker-balls using GIMP and G'MIC
 
 Software used: [GIMP](https://www.gimp.org/downloads/) and [G'MIC](https://gmic.eu/download.shtml)
 
-We forgot to take a photo of the snooker-table without balls so we need to clear out the playing field using GIMP. First of all we need a bunch of photos with ballls in different spots so that we can use G'MIC to get the median of the layers.
+We forgot to take a photo of the snooker-table without balls so we needed to clear out the playing field using GIMP. First of all we need a bunch of photos with balls in different spots so that we can use G'MIC to get the median of the layers.
 
 This ends up only removing the red balls as the rest of the balls are on their respective default places.
 
@@ -659,7 +669,7 @@ Now we clear the rest of the balls using the cloning-tool and the smudge-tool to
 
 ### 2D Perspective warping
 
-We either needed to get better material (from straight up-top) or to warp the perspective of our videos.
+We either needed to get better material (from straight up-top) or to warp the perspective of our videos to read the game from a two dimensional point of view.
 
 ***Spoiler: We went a filmed new material but before that we tried out how it would turn out***
 
@@ -671,7 +681,9 @@ You can definitely see that the perspective is warped, as you look at the pocket
 
 <a href="https://i.imgur.com/g0KDgda.jpg"><img src="https://i.imgur.com/g0KDgda.jpg" title="2D Perspective-warping" /></a>
 
-The perspective warping result and the rest of our problems regarding the recognition of the snooker balls forced us to find a better angle to shoot our material from, which was the birdview. All of this was possible by lifting the lamps 1 meter higher than they usually were and strapping our Go Pro to a self-made camera-holder.
+### Solution to our recognition problem (Birdview footage)
+
+The perspective warping result and the rest of our problems regarding the recognition of the snooker balls forced us to find a better angle to shoot our material from, which was the birdview. All of this was possible by lifting the tablelamps a meter higher than they usually were and strapping our Go Pro to a self-made camera-holder.
 
 <a href="https://i.imgur.com/5unPZ51.jpg"><img src="https://i.imgur.com/5unPZ51.jpg" title="sMacGyver-apparatus" /></a>
 
@@ -716,11 +728,56 @@ After testing numerus different ways of creating the GUI we finally made somethi
 
 [Gif of the GUI](https://giant.gfycat.com/WelcomeBlackAmericanbobtail.webm)
 
-At this point we still need to attach all of the functionalities to the GUI. At the moment all of the filedialog prompts are done.
+#### Dropdown menu
+
+Like all good applications, BillySTAT needs a dropdown menu too. We wanted the default buttons like Open, Save, Save as and Exit. These were done with the code below.
+
+	self.menu = tki.Menu(window)
+        self.window.config(menu=self.menu)
+
+        self.file = tki.Menu(self.menu, tearoff=0)
+
+        self.file.add_command(label='Open', accelerator='Ctrl+O', compound='left',
+                              underline=0, command=self.select_source)
+        self.file.add_command(label='Save', accelerator='Ctrl+S', compound='left',
+                              underline=0, command=self.save)
+        self.file.add_command(label='Save as', accelerator='Shift+Ctrl+S',
+                              compound='left', command=self.save_statistics)
+        self.file.add_command(label='Exit', command=lambda: exit())
+
+        self.menu.add_cascade(label='File', menu=self.file)
+	
+#### Pushable buttons
+
+To actually make the GUI usefull we need to add some buttons with basic functionality. We wanted buttons like Start Game, Stop Game, Switch Player and Save Statistics. These were made with the code below.
+
+	# START BUTTON
+        self.startBtn = tki.Button(window, text="Start game", command=self.startGame)
+        self.startBtn.pack(fill=tki.X, pady=11, padx=11)
+
+        # STOP BUTTON
+        self.stopBtn = tki.Button(window, text="Stop game", command=self.stopGame)
+        self.stopBtn.pack(fill=tki.X, pady=11, padx=11)
+
+        # SWITCH PLAYERS BUTTON
+        self.switchBtn = tki.Button(window, text="Switch player", command=self.switchPlayer)
+        self.switchBtn.pack(fill=tki.X, pady=11, padx=11)
+
+        # if pressed change player
+        # if player1 currently_selected = switch_to_player2
+        # if player2 currently_selected = switch_to_player1
+
+        # SAVE STATISTICS BUTTON
+        self.saveBtn = tki.Button(window, text="Save game statistics", command=self.save_statistics)
+        self.saveBtn.pack(fill=tki.X, pady=11, padx=11)
+
+At this point we still need to attach ***all*** of the functionalities to the GUI. At the moment all of the filedialog prompts are done.
 
 ![Test video](https://imgur.com/a/29O8Vdw)
 
-Unfortunately due to our lack of python and tkinter knowledge we didn't know how to actually connect everything, so we ended up using the GUI to running pallo.py and for source selection.
+#### Final state of GUI
+
+Unfortunately due to our lack of python and tkinter knowledge we didn't know how to actually connect everything, so we ended up using the GUI to run pallo.py and for selecting the source.
 
 ### Displaying statistics on screen
 
@@ -746,3 +803,17 @@ So we added our own putText,
 This is how it looks like,
 
 <a href="hhttps://i.imgur.com/hZDxVAB.png"><img src="https://i.imgur.com/hZDxVAB.png" title="HUD for BillySTAT's" /></a>
+
+### Saving the statistics
+
+We wanted to have a button with a function that would save the current statistics of the game being played with the push of a button. Our limited knowledge of Tkinter and Python led us to do it the simple way, updating a file called results.txt every iteration of pallo.py with the current statistics.
+
+	results = open('results.txt', 'w')
+        results.write("Osumaprosentti ")
+        results.write(str(osumat))
+        results.write("\n")
+        results.write("Osumien määrä ")
+        results.write(str(osuma))
+        results.write("\n")
+        results.write("Ohilyöntien määrä ")
+        results.write(str(huti))
