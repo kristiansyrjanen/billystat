@@ -1,12 +1,11 @@
 Get statistics for your Snooker games with BillySTAT.
 
-<a href="hhttps://i.imgur.com/hZDxVAB.png"><img src="https://i.imgur.com/hZDxVAB.png" title="HUD for BillySTAT's" /></a>
+<a href="https://i.imgur.com/hZDxVAB.png"><img src="https://i.imgur.com/hZDxVAB.png" title="HUD for BillySTAT" /></a>
 
-<a href="https://i.imgur.com/3Uf9RY9.png"><img src="https://i.imgur.com/3Uf9RY9.png" title="source: imgur.com" /></a>
+<a href="https://i.imgur.com/fDvP2RI.png"><img src="https://i.imgur.com/fDvP2RI.png" title="GUI for BillySTAT" /></a>
 
-<a href="https://i.imgur.com/OSKTQa6.png"><img src="https://i.imgur.com/OSKTQa6.png" title="source: imgur.com" /></a>
 
-**How to use Billystat:**
+**How to use BillySTAT:**
 
 In folder billystat/kristian-kesken/gui/ run command
 
@@ -777,7 +776,11 @@ At this point we still need to attach ***all*** of the functionalities to the GU
 
 #### Final state of GUI
 
-Unfortunately due to our lack of python and tkinter knowledge we didn't know how to actually connect everything, so we ended up using the GUI to run pallo.py and for selecting the source.
+Unfortunately due to our lack of python and tkinter knowledge we didn't know how to actually connect everything, so we ended up using the GUI to run pallo.py and for selecting the source. 
+
+Final version of the GUI,
+
+<a href="https://i.imgur.com/fDvP2RI.png"><img src="https://i.imgur.com/fDvP2RI.png" title="GUI for BillySTAT" /></a>
 
 ### Displaying statistics on screen
 
@@ -817,3 +820,7 @@ We wanted to have a button with a function that would save the current statistic
         results.write("\n")
         results.write("Ohilyöntien määrä ")
         results.write(str(huti))
+
+<a href="https://i.imgur.com/bH5y8uc.png"><img src="https://i.imgur.com/bH5y8uc.png" title="results.txt" /></a>
+
+The statistics are a bit skewed at the moment because of the lack of black ball recognition, therefore showing up as a missed shot. We're trying to fix it.
