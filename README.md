@@ -1,7 +1,5 @@
 # BillySTAT
-BillySTAT records your Snooker statistics using YOLOv3, OpenCV and NVidia Cuda.
-
-### Record your accuracy in your Snooker games with BillySTAT.
+#### BillySTAT records your Snooker statistics using YOLOv3, OpenCV and NVidia Cuda.
 
 
 <a href="https://i.imgur.com/hZDxVAB.png"><img src="https://i.imgur.com/hZDxVAB.png" title="HUD for BillySTAT" /></a>
