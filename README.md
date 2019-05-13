@@ -1,4 +1,8 @@
-Get statistics for your Snooker games with BillySTAT.
+# BillySTAT
+BillySTAT records your Snooker statistics using YOLOv3, OpenCV and NVidia Cuda.
+
+### Record your accuracy in your Snooker games with BillySTAT.
+
 
 <a href="https://i.imgur.com/hZDxVAB.png"><img src="https://i.imgur.com/hZDxVAB.png" title="HUD for BillySTAT" /></a>
 
@@ -20,7 +24,7 @@ Click outermost points of the snooker table on the displayed video for mask and 
 
 Simple as that.
 
-Our achievements in action @ https://www.youtube.com/channel/UCiSQy3Upsj8ocebaWwPHvFQ
+#### Our achievements in action @ https://www.youtube.com/channel/UCiSQy3Upsj8ocebaWwPHvFQ
 
 <!-- toc -->
 
@@ -75,6 +79,12 @@ BillySTAT records your Snooker statistics using YOLOv3, OpenCV and NVidia Cuda.
 - [Matias Richterich](https://matiasrichterich.com)
 
 ***Done on Xubuntu 18.04 LTS***
+
+***Done with***
+
+* [Darknet](https://pjreddie.com/darknet/install/)
+* [YOLOv3](https://pjreddie.com/darknet/yolo/)
+* [OpenCV3](https://www.learnopencv.com/install-opencv3-on-ubuntu/)
 
 ***Hardware HP z820, Xeon e52630 v2 x2, 2 x 8gb 1333 mHz per per processor, 1 TB SSHD***
 
