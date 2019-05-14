@@ -9,8 +9,7 @@
 
 **How to use BillySTAT:**
 
-In folder billystat/kristian-kesken/gui/ run command
-
+In folder billystat/main run command:
 
 	python billystatApp.py
 
