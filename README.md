@@ -27,7 +27,7 @@ Simple as that.
 <!-- toc -->
 
 - [BillySTAT](#billystat)
-  * [School project @Haaga-Helia University of Applied Sciences](#school-project-haaga-helia-university-of-applied-sciences)
+  * [School project @Haaga-Helia University of Applied Sciences](#school-project--haaga-helia-university-of-applied-sciences)
     + [Project members](#project-members)
     + [Things to do](#things-to-do)
   * [Information page](#information-page)
@@ -44,9 +44,9 @@ Simple as that.
   * [Training your neural networks](#training-your-neural-networks)
     + [Creating training material](#creating-training-material)
       - [Resizing images](#resizing-images)
-      - [1st Alternative: YOLO-Annotation-Tool](#1st-alternative-yolo-annotation-tool)
-      - [2nd Alternative: Open Labeling](#2nd-alternative-open-labeling)
-      - [3rd Alternative: Yolo_mark by AlexeyAB](#3rd-alternative-yolo_mark-by-alexeyab)
+      - [1st Alternative: YOLO-Annotation-Tool](#1st-alternative--yolo-annotation-tool)
+      - [2nd Alternative: Open Labeling](#2nd-alternative--open-labeling)
+      - [3rd Alternative: Yolo_mark by AlexeyAB](#3rd-alternative--yolo-mark-by-alexeyab)
   * [Actual training](#actual-training)
       - [Marking the images](#marking-the-images)
   * [YOLOv3 Does not suit for detecting fast small objects](#yolov3-does-not-suit-for-detecting-fast-small-objects)
@@ -55,9 +55,31 @@ Simple as that.
     + [Frame diff from video with grayscale](#frame-diff-from-video-with-grayscale)
     + [Frame diff with color](#frame-diff-with-color)
     + [Getting more material](#getting-more-material)
-  * [OpenCV Object selection by color, cv2.HoughCircles](#opencv-object-selection-by-color-cv2houghcircles)
+  * [OpenCV Object selection by color, cv2.HoughCircles](#opencv-object-selection-by-color--cv2houghcircles)
     + [Defining ROIs](#defining-rois)
-    + [Empty game area without Snooker-balls using GIMP and G'MIC](#empty-game-area-without-snooker-balls-using-gimp-and-gmic)
+    + [Working on the Pallo.py](#working-on-the-pallopy)
+  * [Possible solutions to detecting balls from an angled view](#possible-solutions-to-detecting-balls-from-an-angled-view)
+    + [Subtracting/Comparing frames](#subtracting-comparing-frames)
+      - [Empty game area without Snooker-balls using GIMP and G'MIC](#empty-game-area-without-snooker-balls-using-gimp-and-g-mic)
+    + [2D Perspective warping](#2d-perspective-warping)
+    + [Solution to our recognition problem (Birdview footage)](#solution-to-our-recognition-problem--birdview-footage-)
+  * [Creating a GUI for BillySTAT](#creating-a-gui-for-billystat)
+    + [Tkinter](#tkinter)
+    + [Mockup](#mockup)
+    + [Creating the GUI](#creating-the-gui)
+      - [Dropdown menu](#dropdown-menu)
+      - [Pushable buttons](#pushable-buttons)
+      - [Final state of GUI](#final-state-of-gui)
+    + [Displaying statistics on screen](#displaying-statistics-on-screen)
+    + [Saving the statistics](#saving-the-statistics)
+  * [GoPro as the camera](#gopro-as-the-camera)
+  * [Summary](#summary)
+    + [YoloV3](#yolov3)
+    + [OpenCV3](#opencv3-1)
+    + [Thoughts](#thoughts)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 
 <!-- tocstop -->
 
@@ -1249,12 +1271,12 @@ YoloV3 would probably work great if we had the time and processing power to crea
 
 OpenCV3 is a great library and you can create very unique things with it. Even though we had no prior Python or Tkinter knowledge, we managed to create BillySTAT, generate statistics with it and had a simple GUI for it.
 
-### BillySTAT
-
-
 
 ### Thoughts
 Overall the project was very difficult to implement because none of us have background in coding and everything in the end about the project was coding.
+
 It was very fun and somewhat different course and we were allowed to really work as a team.
+
 We could have used more time to finish up loose ends like balls going to holes, but alot of our time went to YOLO at start of the course, which we ended scrapping from the final version.
+
 We would have liked some more counseling from the teachers, but that would have also eaten our self progress at the same time.
