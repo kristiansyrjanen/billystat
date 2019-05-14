@@ -1,5 +1,5 @@
 # BillySTAT
-#### BillySTAT records your Snooker statistics using YOLOv3, OpenCV and NVidia Cuda.
+#### BillySTAT records your Snooker statistics using ~~YOLOv3~~, OpenCV ~~and NVidia Cuda~~.
 
 
 <a href="https://i.imgur.com/hZDxVAB.png"><img src="https://i.imgur.com/hZDxVAB.png" title="HUD for BillySTAT" /></a>
@@ -57,12 +57,12 @@ Simple as that.
     + [Getting more material](#getting-more-material)
   * [OpenCV Object selection by color, cv2.HoughCircles](#opencv-object-selection-by-color-cv2houghcircles)
     + [Defining ROIs](#defining-rois)
-    + [Clear game area without Snooker-balls using GIMP and G'MIC](#clear-game-area-without-snooker-balls-using-gimp-and-gmic)
+    + [Empty game area without Snooker-balls using GIMP and G'MIC](#empty-game-area-without-snooker-balls-using-gimp-and-gmic)
 
 <!-- tocstop -->
 
 # BillySTAT
-BillySTAT records your Snooker statistics using YOLOv3, OpenCV and NVidia Cuda.
+BillySTAT records your Snooker statistics using ~~YOLOv3~~, OpenCV ~~and NVidia Cuda~~.
 
 * [Darknet](https://pjreddie.com/darknet/install/)
 * [YOLOv3](https://pjreddie.com/darknet/yolo/)
@@ -776,7 +776,9 @@ https://docs.python.org/2/library/tkinter.html
 
 http://effbot.org/tkinterbook/place.htm
 
-After testing numerus different ways of creating the GUI we finally made something that resembles our mockup GUI.
+https://effbot.org/tkinterbook/pack.htm
+
+After testing numerous different ways of creating the GUI we finally made something that resembles our mockup GUI.
 
 <a href="https://i.imgur.com/OSKTQa6.png"><img src="https://i.imgur.com/OSKTQa6.png" title="First GUI" /></a>
 
@@ -879,3 +881,33 @@ We wanted to have a button with a function that would save the current statistic
 <a href="https://i.imgur.com/bH5y8uc.png"><img src="https://i.imgur.com/bH5y8uc.png" title="results.txt" /></a>
 
 The statistics are a bit skewed at the moment because of the lack of black ball recognition, therefore showing up as a missed shot. We're trying to fix it.
+
+
+## GoPro as the camera
+
+GoPro was the only camera with a field of view broad enough to capture the entire snookertable from the height available to us. Our first thoughts were to use it as a "Webcam" as easily as just pointing it like any other webcam-source, with a 0(default webcam source) or a 1.
+
+	cv2.VideoCapture(0) #or 1
+
+Little did we know, this doesn't work. We either needed a videocapture-card along with a USB-C to HDMI-cable to get it to work and we didn't have the resources for it. Second option for it to work was trying to use it over Wi-Fi wtih [KondradIT's GoProStream tool](https://github.com/KonradIT/GoProStream), which ended up to be too hard to do with our time schedule as we realized this an hour before we went and filmed our validation-game for the project.
+
+We ended up using the GoPro to film a game played by a finnish Semi-Pro Snooker player and analyzing/running it though BillySTAT later.
+
+## Summary
+
+Summary of our project and thoughts about the course.
+
+### YoloV3
+
+YoloV3 would probably work great if we had the time and processing power to create reliable weights that would recognize all balls. Simply put, OpenCV was a better option for us due to the time constraints and our resources. It could quite reliably notice our snooker ballsa and it had great versatility to bend to our needs.
+
+### OpenCV3
+
+OpenCV3 is a great library and you can create very unique things with it. Even though we had no prior Python or Tkinter knowledge, we managed to create BillySTAT, generate statistics with it and had a simple GUI for it.
+
+### BillySTAT
+
+
+
+### Thoughts
+
