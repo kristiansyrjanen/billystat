@@ -651,7 +651,7 @@ Which results in
 
 ![Alt Text](https://i.imgur.com/uYViSDV.gif)
 
-This is nice but we need something a bit different.
+This is nice but we need something that actually tracks moving objects and frame difference might not be the case for us.
 
 ### Getting more material
 
