@@ -10,7 +10,7 @@ import sys
 import imutils
 from imutils.video import VideoStream
 
-gameAreaLower2 = np.array([40, 0, 0])
+gameAreaLower2 = np.array([40, 0, 90])
 gameAreaUpper2 = np.array([80, 255, 255])
 
 # Minimi/maksimi contourin ympäröivän pallon säde että katsotaan pidemmälle.
