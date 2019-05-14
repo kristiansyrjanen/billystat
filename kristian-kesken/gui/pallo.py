@@ -247,14 +247,14 @@ def main(video=True, name=None):
     frame = frame[1] if video else frame
     if frame is not None:
         frame = imutils.resize(frame, width=1280)
-        cv2.imshow("test", frame)
-        cv2.setMouseCallback("test", click)
+        cv2.imshow("BillySTAT - Preparing", frame)
+        cv2.setMouseCallback("BillySTAT - Preparing", click)
 
         second = False
         while True:
             key = cv2.waitKey(1) & 0xFF
             if key == ord("c"):
-                cv2.setMouseCallback("test", click2bugaloo)
+                cv2.setMouseCallback("BillySTAT - Preparing", click2bugaloo)
                 if second:
                     cv2.destroyAllWindows()
                     break
@@ -351,7 +351,7 @@ def main(video=True, name=None):
             cv2.putText(frame, text, (10, 75 - ((i * 20) + 20)),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
         # show the frame to our screen
-        cv2.imshow("SnookerBall Tracking Frame", frame)
+        cv2.imshow("BillySTAT - Aniki Frame", frame)
         key = cv2.waitKey(1) & 0xFF
         if key == ord("q"):
             break
