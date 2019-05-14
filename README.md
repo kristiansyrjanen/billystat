@@ -1235,7 +1235,7 @@ GoPro was the only camera with a field of view broad enough to capture the entir
 
 Little did we know, this doesn't work. We either needed a videocapture-card along with a USB-C to HDMI-cable to get it to work and we didn't have the resources for it. Second option for it to work was trying to use it over Wi-Fi wtih [KondradIT's GoProStream tool](https://github.com/KonradIT/GoProStream), which ended up to be too hard to do with our time schedule as we realized this an hour before we went and filmed our validation-game for the project.
 
-We ended up using the GoPro to film a game played by a finnish Semi-Pro Snooker player and analyzing/running it though BillySTAT later.
+We ended up using the GoPro to film a game played by a finnish Semi-Pro Snooker player and analyzing/running it though BillySTAT later. BillySTAT calculated his hit percentage to be ~70,56%.
 
 ## Summary
 
